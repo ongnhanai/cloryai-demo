@@ -192,7 +192,7 @@
         </div>
     </header>
 
-    <main class="flex-1 w-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center relative z-10 py-6 overflow-hidden">
+    <main class="flex-1 w-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center relative z-10 py-4 sm:py-6 overflow-y-auto">
         
         <!-- Interactive CloryAI Central Orb Button -->
         <div class="relative flex flex-col items-center justify-center my-auto cursor-pointer group" onclick="handleOrbClick()">
@@ -230,13 +230,24 @@
             </div>
 
             <!-- Dynamic Agent Welcome Subtext -->
-            <div class="mt-8 max-w-lg px-4 text-center">
+            <div class="mt-6 max-w-lg px-4 text-center">
                 <p id="agent-welcome-text" class="text-sm sm:text-base md:text-lg text-slate-800 dark:text-slate-200 font-semibold transition-all duration-300 leading-relaxed drop-shadow-sm">
                     "CloryAI Fleet Agent xin chào, hôm nay tôi có thể giúp gì cho bạn?"
                 </p>
-                <p id="orb-hint-text" class="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
+                <p id="orb-hint-text" class="mt-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
                     Chạm vào quả cầu trung tâm để tương tác trực tiếp bằng giọng nói
                 </p>
+            </div>
+        </div>
+
+        <!-- Interactive Question Suggestions Pills -->
+        <div class="mt-5 w-full max-w-2xl px-2 flex flex-col items-center">
+            <div class="flex items-center space-x-1.5 text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 font-bold mb-2">
+                <i class="fa-solid fa-lightbulb text-amber-500 animate-pulse"></i>
+                <span>GỢI Ý CÂU HỎI TƯƠNG TÁC</span>
+            </div>
+            <div id="suggested-questions-container" class="flex flex-wrap items-center justify-center gap-2">
+                <!-- Injected via JS based on current active agent -->
             </div>
         </div>
 
@@ -255,9 +266,8 @@
         <div class="text-center font-medium">
             © 2026 CloryAI Assistant. Powered by <a href="https://www.dntg.com.vn" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 font-semibold underline underline-offset-2 hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">DNTG</a>. All rights reserved.
         </div>
-        <!-- Dual Language Disclaimers -->
-        <div class="text-[11px] text-slate-400 dark:text-slate-500 text-center space-y-0.5">
-            <p>CloryAI® là một AI, mọi kết quả đã được tối ưu, tuy nhiên cần được kiểm chứng trước khi thực thi.</p>
+        <!-- Single English Language Disclaimer -->
+        <div class="text-[11px] text-slate-400 dark:text-slate-500 text-center">
             <p class="font-mono text-[10px] opacity-80">CloryAI® is AI, results are optimized, please verify before implementation.</p>
         </div>
     </footer>
@@ -654,7 +664,6 @@
         let adminCurrentFilter = 'all';
         let adminSearchQuery = '';
 
-        // Agent Metadata & Icons
         const agentsConfig = {
             logistics: {
                 name: "CloryAI Fleet Agent",
@@ -663,6 +672,11 @@
                     "CloryAI Fleet Agent xin chào, hôm nay tôi có thể giúp gì cho bạn?",
                     "Chào bạn, tôi là CloryAI Fleet Agent phụ trách Logistics & Điều hành đội xe!",
                     "CloryAI Fleet Agent sẵn sàng hỗ trợ điều động xe AGV và tra cứu vị trí Pallet!"
+                ],
+                suggestions: [
+                    "🚚 Kiểm tra vị trí Pallet #8821",
+                    "🔋 Xe AGV-01 còn bao nhiêu % pin?",
+                    "📍 Dẫn đường đến Cổng xuất hàng Zone D"
                 ]
             },
             aerohub: {
@@ -672,6 +686,11 @@
                     "CloryAI AeroHub Agent chào buổi sáng, bạn cần tôi giúp gì?",
                     "Chào mừng bạn tới AeroHub! CloryAI sẵn sàng hỗ trợ thông tin các chuyến bay.",
                     "CloryAI AeroHub Agent xin chào! Tôi có thể giúp bạn kiểm tra hành lý và điều hướng terminal."
+                ],
+                suggestions: [
+                    "✈️ Trạng thái chuyến bay VN214 thế nào?",
+                    "🧳 Tra cứu khu vực hành lý thất lạc",
+                    "🚪 Cổng Gate 5 đi đường nào?"
                 ]
             },
             concierge: {
@@ -681,6 +700,11 @@
                     "CloryAI Concierge Agent sẵn sàng hỗ trợ, hãy nói với tôi nếu bạn cần hỗ trợ gì nhé!",
                     "Xin chào quý khách! Tôi là CloryAI Concierge Agent, rất vinh hạnh được phục vụ bạn.",
                     "CloryAI Concierge luôn trực 24/7 để hỗ trợ thông tin dịch vụ khách sạn & sự kiện!"
+                ],
+                suggestions: [
+                    "🛎️ Đặt phòng họp Executive Meeting Room",
+                    "🍽️ Gợi ý thực đơn nhà hàng tối nay",
+                    "🚗 Đặt xe shuttle bus đưa đón sân bay"
                 ]
             }
         };
@@ -701,6 +725,7 @@
         const expiredModal = document.getElementById('expired-modal');
         const adminModal = document.getElementById('admin-modal');
         const quotaTimerText = document.getElementById('quota-timer-text');
+        const suggestedQuestionsContainer = document.getElementById('suggested-questions-container');
 
         async function fetchUserIP() {
             try {
@@ -787,6 +812,21 @@
             }
         }
 
+        function renderSuggestedQuestions(agentKey) {
+            const config = agentsConfig[agentKey];
+            if (!config || !suggestedQuestionsContainer) return;
+
+            suggestedQuestionsContainer.innerHTML = config.suggestions.map(qText => {
+                // Strip icons if any for raw text query execution
+                const cleanQuery = qText.replace(/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]\s*/u, '');
+                return `
+                    <button onclick="processUserQuery('${cleanQuery}')" class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 dark:hover:border-cyan-400 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-medium shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 flex items-center space-x-1">
+                        <span>${qText}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
         function changeAgent(agentKey) {
             currentAgentKey = agentKey;
             const config = agentsConfig[agentKey];
@@ -805,6 +845,7 @@
             }
 
             syncRegModalIcon(agentKey);
+            renderSuggestedQuestions(agentKey);
 
             const randomIndex = Math.floor(Math.random() * config.greetings.length);
             let greeting = config.greetings[randomIndex];
@@ -974,13 +1015,9 @@
         function simulateVoiceInteraction() {
             setAssistantState('listening');
             setTimeout(() => {
-                const sampleQueries = [
-                    "Kiểm tra vị trí Pallet #8821",
-                    "Xe AGV-01 còn bao nhiêu phần trăm pin?",
-                    "Dẫn đường đến Cổng xuất hàng Zone D"
-                ];
-                const query = sampleQueries[Math.floor(Math.random() * sampleQueries.length)];
-                processUserQuery(query);
+                const currentSuggestions = agentsConfig[currentAgentKey].suggestions;
+                const sampleQuery = currentSuggestions[Math.floor(Math.random() * currentSuggestions.length)].replace(/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]\s*/u, '');
+                processUserQuery(sampleQuery);
             }, 1800);
         }
 
