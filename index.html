@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CloryAI Assistant - Multi-Agent Voice Kiosk</title>
+    <title>CloryAI Agents - Next Generation Digital Workforce</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -244,8 +244,7 @@
     <div class="fixed bottom-16 right-4 sm:bottom-20 sm:right-6 z-30">
         <button onclick="openCsatModal()" class="animate-csat-pulse bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl csat-float-glow border border-amber-200/50 flex items-center space-x-2 transition-transform hover:scale-105 active:scale-95" title="Đánh giá chất lượng trải nghiệm">
             <i class="fa-solid fa-star text-amber-200 animate-spin text-sm" style="animation-duration: 6s;"></i>
-            <span class="uppercase tracking-wider">ĐÁNH GIÁ CSAT</span>
-            <span class="hidden md:inline bg-white/20 px-1.5 py-0.5 rounded-full text-[10px] font-mono">+15m</span>
+            <span class="uppercase tracking-wider">ĐÁNH GIÁ CỦA BẠN</span>
         </button>
     </div>
 
@@ -282,3 +281,1173 @@
 
             <!-- Step 1: Main Auth Methods Selection -->
             <div id="reg-step-1" class="space-y-4">
+                
+                <!-- Droplist: Bạn quan tâm ứng dụng AI cho lĩnh vực nào? -->
+                <div class="text-left space-y-1">
+                    <label for="reg-agent-interest" class="block text-xs font-bold text-slate-800 dark:text-slate-200">
+                        Bạn quan tâm ứng dụng AI cho lĩnh vực nào? <span class="text-cyan-600 dark:text-cyan-400">*</span>
+                    </label>
+                    <div class="relative">
+                        <select id="reg-agent-interest" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm focus:outline-none focus:border-cyan-500 cursor-pointer shadow-sm appearance-none pr-8">
+                            <option value="logistics">Logistics, Warehouse, Fleet</option>
+                            <option value="aerohub">Hàng không, Sân bay, Vận tải</option>
+                            <option value="concierge">Khách sạn, Resort, Hospitality</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Auth Option Only -->
+                <div>
+                    <button type="button" onclick="handleSocialAuth('google')" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm flex items-center justify-center space-x-3 transition-all active:scale-98 shadow-sm">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                        </svg>
+                        <span>Continue with Google</span>
+                    </button>
+                </div>
+
+                <!-- Divider -->
+                <div class="relative flex py-1 items-center">
+                    <div class="flex-grow border-t border-slate-300 dark:border-slate-800"></div>
+                    <span class="flex-shrink mx-3 text-[10px] text-slate-400 dark:text-slate-500 font-mono font-bold uppercase">HOẶC ĐĂNG KÝ TRỰC TIẾP</span>
+                    <div class="flex-grow border-t border-slate-300 dark:border-slate-800"></div>
+                </div>
+
+                <!-- Classic Lead Registration Form -->
+                <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tên</label>
+                        <input type="text" id="lead-name" placeholder="Nguyễn Văn A" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Đơn vị</label>
+                        <input type="text" id="lead-company" placeholder="Công ty / Tổ chức của bạn" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Số điện thoại Zalo <span class="text-rose-500">*</span></label>
+                        <input type="tel" id="lead-phone" required placeholder="0901234567" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email <span class="text-rose-500">*</span></label>
+                        <input type="email" id="lead-email" required placeholder="example@domain.com" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+
+                    <button type="submit" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-600 via-amber-600 to-orange-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-98 mt-2 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>BẮT ĐẦU TRÒ CHUYỆN CÙNG CLORYAI</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Social Auth Zalo Magic Link Mobile Input Modal -->
+            <div id="reg-step-2" class="hidden space-y-4 text-center">
+                <div class="p-3 bg-cyan-50 dark:bg-slate-800/80 rounded-xl border border-cyan-200 dark:border-cyan-800 text-xs text-slate-700 dark:text-slate-200">
+                    <p class="font-bold text-cyan-600 dark:text-cyan-400 mb-1" id="social-user-display">Xin chào User</p>
+                    <p>Nhập số điện thoại Zalo của bạn để nhận Link trải nghiệm CloryAI</p>
+                </div>
+
+                <div class="text-left space-y-1">
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Số điện thoại Zalo <span class="text-rose-500">*</span></label>
+                    <input type="tel" id="social-zalo-phone" placeholder="0901234567" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 text-center font-mono font-bold tracking-widest">
+                </div>
+
+                <button type="button" onclick="submitSocialZaloMagicLink()" class="w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>GỬI MAGIC LINK QUA ZALO & BẮT ĐẦU</span>
+                </button>
+
+                <button type="button" onclick="backToRegStep1()" class="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 underline">
+                    Quay lại chọn phương thức khác
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="csat-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 max-w-lg w-full shadow-2xl relative overflow-hidden max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCsatModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center mx-auto mb-2 text-xl">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-slate-100">ĐÁNH GIÁ CHẤT LƯỢNG TRẢI NGHIỆM (CSAT)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ý kiến của bạn giúp CloryAI nâng cao năng lực phục vụ!</p>
+            </div>
+
+            <form id="csat-form" onsubmit="handleCsatSubmit(event)" class="space-y-4 text-xs sm:text-sm">
+                <!-- 1. Star Rating -->
+                <div>
+                    <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5 text-center">1. Đánh giá độ hài lòng tổng thể <span class="text-rose-500">*</span></label>
+                    <div class="flex items-center justify-center space-x-2 text-2xl sm:text-3xl text-amber-400 cursor-pointer py-1">
+                        <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(1)" title="Rất không hài lòng (1/5)"></i>
+                        <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(2)" title="Không hài lòng (2/5)"></i>
+                        <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(3)" title="Bình thường (3/5)"></i>
+                        <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(4)" title="Hài lòng (4/5)"></i>
+                        <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(5)" title="Rất hài lòng (5/5)"></i>
+                    </div>
+                    <p id="rating-label-text" class="text-center text-xs text-cyan-600 dark:text-cyan-400 font-semibold mt-1">Vui lòng chọn số sao (5/5 ⭐)</p>
+                </div>
+
+                <!-- 2. Impressive Features -->
+                <div>
+                    <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5">2. Tính năng làm bạn ấn tượng nhất?</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
+                            <input type="checkbox" value="Tương tác & Lắng nghe" class="csat-feature-check text-cyan-600 rounded">
+                            <span>Tương tác & Lắng nghe</span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
+                            <input type="checkbox" value="Tốc độ phản hồi" class="csat-feature-check text-cyan-600 rounded">
+                            <span>Tốc độ phản hồi</span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
+                            <input type="checkbox" value="Giao diện trực quan" class="csat-feature-check text-cyan-600 rounded">
+                            <span>Giao diện trực quan</span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
+                            <input type="checkbox" value="Thông tin chính xác" class="csat-feature-check text-cyan-600 rounded">
+                            <span>Thông tin chính xác</span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
+                            <input type="checkbox" value="Đa ngôn ngữ" class="csat-feature-check text-cyan-600 rounded">
+                            <span>Đa ngôn ngữ</span>
+                        </label>
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
+                            <input type="checkbox" value="Dự đoán ý định" class="csat-feature-check text-cyan-600 rounded">
+                            <span>Dự đoán ý định</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 3. Implementation Plan -->
+                <div>
+                    <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5">3. Kế hoạch triển khai của đơn vị bạn?</label>
+                    <select id="csat-plan-select" class="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-semibold focus:outline-none focus:border-cyan-500">
+                        <option value="Cần tư vấn ngay">🔥 Cần tư vấn ngay hôm nay</option>
+                        <option value="Cần báo giá">💰 Cần báo giá giải pháp On-premise</option>
+                        <option value="Cần thêm thông tin">📄 Cần gửi thêm tài liệu giải pháp</option>
+                        <option value="Chỉ tìm hiểu thử">🔍 Chỉ trải nghiệm tìm hiểu công nghệ</option>
+                    </select>
+                </div>
+
+                <!-- 4. Comments -->
+                <div>
+                    <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1">4. Góp ý bổ sung (Không bắt buộc)</label>
+                    <textarea id="csat-comment" rows="2" placeholder="Bạn mong muốn CloryAI cải thiện tính năng gì..." class="w-full p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs focus:outline-none focus:border-cyan-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>GỬI ĐÁNH GIÁ CSAT & NHẬN THÊM +15m</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Expired Trial Modal -->
+    <div id="expired-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-lg flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl">
+            <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-500 flex items-center justify-center mx-auto mb-4 border border-rose-500/40">
+                <i class="fa-solid fa-hourglass-end text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 dark:text-slate-100">THỜI GIAN TRẢI NGHIỆM ĐÃ HẾT</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                Phiên dùng thử 60 phút của bạn đã kết thúc. Vui lòng liên hệ với chuyên gia DNTG để nhận bản Demo On-premise toàn diện!
+            </p>
+
+            <div class="mt-6 space-y-2.5">
+                <button onclick="openCsatModal()" class="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-xs uppercase tracking-wider shadow transition-all active:scale-95 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-star"></i>
+                    <span>ĐÁNH GIÁ TRẢI NGHIỆM CSAT</span>
+                </button>
+
+                <a href="https://www.cloudpbx.vn/lien-he/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all active:scale-95">
+                    <i class="fa-solid fa-calendar-check mr-2"></i>ĐẶT LỊCH DEMO 1-1 GIAO DIỆN THỰC TẾ
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 max-w-4xl w-full shadow-2xl max-h-[90vh] flex flex-col">
+            
+            <!-- Admin Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-full bg-abstract-gradient flex items-center justify-center text-white">
+                        <i class="fa-solid fa-user-gear text-sm"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-slate-900 dark:text-slate-100">ADMIN CONTROL PANEL - CLORYAI DEMO SESSIONS</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Quản lý danh sách các phiên trải nghiệm người dùng & CSAT</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Admin Authentication Step -->
+            <div id="admin-auth-sec" class="py-8 max-w-sm mx-auto w-full text-center space-y-4">
+                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập mật khẩu Admin để truy cập Hệ thống Quản lý Phiên:</p>
+                <input type="password" id="admin-pass-input" placeholder="Mật khẩu Admin" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:border-cyan-500 text-center">
+                <button onclick="verifyAdminPass()" class="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
+                    XÁC NHẬN ĐĂNG NHẬP ADMIN
+                </button>
+            </div>
+
+            <!-- Admin Dashboard Controls -->
+            <div id="admin-controls-sec" class="hidden flex-1 flex flex-col space-y-3 overflow-hidden mt-3">
+                <!-- Config & Notification Settings Bar -->
+                <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+                    <div class="flex items-center space-x-2 w-full sm:w-auto">
+                        <i class="fa-solid fa-envelope text-cyan-500"></i>
+                        <span class="font-semibold text-slate-700 dark:text-slate-300">Email nhận Lead Sales:</span>
+                    </div>
+                    <div class="flex items-center space-x-2 w-full sm:w-auto">
+                        <input type="email" id="admin-notify-email-input" value="lamthenhan@gmail.com" class="px-3 py-1 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs font-mono text-slate-800 dark:text-slate-100 w-full sm:w-64 focus:outline-none focus:border-cyan-500">
+                        <button onclick="saveAdminNotifyEmail()" class="px-3 py-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded text-xs transition-colors shrink-0">Lưu Email</button>
+                    </div>
+                </div>
+
+                <!-- Admin Filters & Search Bar -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <div class="relative w-full sm:w-72">
+                        <input type="text" id="admin-search-input" oninput="filterAdminSessions()" placeholder="Tìm theo tên, SĐT, email..." class="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-cyan-500">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-400"></i>
+                    </div>
+
+                    <div class="flex items-center space-x-1 w-full sm:w-auto text-xs">
+                        <button onclick="setAdminFilter('all')" id="filter-btn-all" class="px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-semibold">Tất cả</button>
+                        <button onclick="setAdminFilter('active')" id="filter-btn-active" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">Đang hoạt động</button>
+                        <button onclick="setAdminFilter('expired')" id="filter-btn-expired" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">Hết hạn</button>
+                    </div>
+                </div>
+
+                <!-- Sessions Data Table -->
+                <div class="flex-1 overflow-y-auto border border-slate-200 dark:border-slate-800 rounded-xl">
+                    <table class="w-full text-left text-xs text-slate-700 dark:text-slate-300">
+                        <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 font-mono uppercase text-[10px]">
+                            <tr>
+                                <th class="p-3">Khách hàng</th>
+                                <th class="p-3">Đơn vị</th>
+                                <th class="p-3">Liên hệ</th>
+                                <th class="p-3">CSAT</th>
+                                <th class="p-3">Còn lại</th>
+                                <th class="p-3">Trạng thái</th>
+                                <th class="p-3 text-right">Thao tác Quota</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-sessions-tbody" class="divide-y divide-slate-200 dark:divide-slate-800">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Admin Footer Actions -->
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+                    <span id="admin-session-count" class="text-slate-500 dark:text-slate-400">Hiển thị 0 phiên</span>
+                    <button onclick="showConfirmDialog('Bạn có chắc muốn xóa toàn bộ danh sách phiên không?', clearAllSessionsData)" class="px-3 py-1.5 rounded-lg bg-rose-600/20 text-rose-500 border border-rose-500/30 hover:bg-rose-600 hover:text-white font-semibold transition-colors">
+                        Xóa tất cả Data
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- UI Toast Notification -->
+    <div id="ui-toast" class="fixed top-5 right-5 z-50 max-w-xs px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs shadow-2xl transition-all duration-300 -translate-y-10 opacity-0 pointer-events-none flex items-center space-x-2">
+        <i id="toast-icon" class="fa-solid fa-circle-info text-cyan-400 text-sm"></i>
+        <span id="toast-msg">Thông báo hệ thống</span>
+    </div>
+
+    <!-- In-App Confirm Dialog Modal -->
+    <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 max-w-sm w-full text-center shadow-2xl space-y-4">
+            <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <p id="confirm-msg" class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium">Bạn có chắc chắn muốn thực hiện thao tác này?</p>
+            <div class="flex items-center justify-center space-x-2 pt-2">
+                <button onclick="closeConfirmModal(false)" class="flex-1 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs">Hủy bỏ</button>
+                <button onclick="closeConfirmModal(true)" class="flex-1 py-2 rounded-lg bg-rose-600 text-white font-semibold text-xs shadow">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WEBHOOK_URL = "https://httpbin.org/post";
+
+        let isDarkMode = true;
+        let currentState = 'idle'; // 'idle', 'listening', 'thinking', 'speaking'
+        let currentAgentKey = 'logistics';
+        let recognition = null;
+        let isRecognizing = false;
+        let canvas, ctx, animationFrameId;
+
+        let userLeadData = null;
+        let pendingSocialProvider = null;
+        let pendingSocialProfile = null;
+        let quotaInterval = null;
+        let userIpAddress = '127.0.0.1';
+        let headerAvatarTapCount = 0;
+        let headerAvatarTapTimer = null;
+        let confirmCallback = null;
+        let csatSelectedRating = 5;
+
+        let adminCurrentFilter = 'all';
+        let adminSearchQuery = '';
+
+        const agentsConfig = {
+            logistics: {
+                name: "CloryAI Fleet Agent",
+                greetings: [
+                    "CloryAI Fleet Agent xin chào, hôm nay tôi có thể giúp gì cho bạn?",
+                    "Chào bạn, tôi là CloryAI Fleet Agent phụ trách Logistics & Điều hành đội xe!",
+                    "CloryAI Fleet Agent sẵn sàng hỗ trợ điều động xe AGV và tra cứu vị trí Pallet!"
+                ]
+            },
+            aerohub: {
+                name: "CloryAI AeroHub Agent",
+                greetings: [
+                    "CloryAI AeroHub Agent chào buổi sáng, bạn cần tôi giúp gì?",
+                    "Chào mừng bạn tới AeroHub! CloryAI sẵn sàng hỗ trợ thông tin các chuyến bay.",
+                    "CloryAI AeroHub Agent xin chào! Tôi có thể giúp bạn kiểm tra hành lý và điều hướng terminal."
+                ]
+            },
+            concierge: {
+                name: "CloryAI Concierge Agent",
+                greetings: [
+                    "CloryAI Concierge Agent sẵn sàng hỗ trợ, hãy nói với tôi nếu bạn cần hỗ trợ gì nhé!",
+                    "Xin chào quý khách! Tôi là CloryAI Concierge Agent, rất vinh hạnh được phục vụ bạn.",
+                    "CloryAI Concierge luôn trực 24/7 để hỗ trợ thông tin dịch vụ khách sạn & sự kiện!"
+                ]
+            }
+        };
+
+        // DOM Element Cache
+        const orbButton = document.getElementById('orb-button');
+        const orbIconWrapper = document.getElementById('orb-icon-wrapper');
+        const orbIcon = document.getElementById('orb-icon');
+        const voiceBars = document.getElementById('voice-bars');
+        const orbActionText = document.getElementById('orb-action-text');
+        const orbHintText = document.getElementById('orb-hint-text');
+        const agentWelcomeText = document.getElementById('agent-welcome-text');
+        const statusBadge = document.getElementById('status-badge');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const registrationModal = document.getElementById('registration-modal');
+        const csatModal = document.getElementById('csat-modal');
+        const expiredModal = document.getElementById('expired-modal');
+        const adminModal = document.getElementById('admin-modal');
+        const quotaTimerText = document.getElementById('quota-timer-text');
+
+        async function fetchUserIP() {
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const data = await res.json();
+                userIpAddress = data.ip;
+            } catch (e) {
+                userIpAddress = '127.0.0.1';
+            }
+        }
+        fetchUserIP();
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('ui-toast');
+            const msgEl = document.getElementById('toast-msg');
+            const iconEl = document.getElementById('toast-icon');
+
+            msgEl.innerText = message;
+            if (type === 'error') {
+                iconEl.className = "fa-solid fa-triangle-exclamation text-rose-400 text-sm";
+            } else if (type === 'success') {
+                iconEl.className = "fa-solid fa-circle-check text-emerald-400 text-sm";
+            } else {
+                iconEl.className = "fa-solid fa-circle-info text-cyan-400 text-sm";
+            }
+
+            toast.classList.remove('-translate-y-10', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('-translate-y-10', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        function showConfirmDialog(msg, callback) {
+            confirmCallback = callback;
+            document.getElementById('confirm-msg').innerText = msg;
+            document.getElementById('confirm-modal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeConfirmModal(result) {
+            document.getElementById('confirm-modal').classList.add('opacity-0', 'pointer-events-none');
+            if (result && typeof confirmCallback === 'function') {
+                confirmCallback();
+            }
+            confirmCallback = null;
+        }
+
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const htmlEl = document.documentElement;
+            const themeBtnIcon = document.getElementById('theme-toggle-icon');
+
+            if (isDarkMode) {
+                htmlEl.classList.add('dark');
+                themeBtnIcon.className = "fa-solid fa-sun text-sm text-amber-400";
+            } else {
+                htmlEl.classList.remove('dark');
+                themeBtnIcon.className = "fa-solid fa-moon text-sm text-slate-700";
+            }
+            setAssistantState(currentState);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+
+            const timeEl = document.getElementById('header-clock-time');
+            const dateEl = document.getElementById('header-clock-date');
+            if (timeEl) timeEl.innerText = `${hours}:${minutes}:${seconds}`;
+            if (dateEl) dateEl.innerText = `${day}/${month}/${year}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function changeAgent(agentKey) {
+            currentAgentKey = agentKey;
+            const config = agentsConfig[agentKey];
+            if (!config) return;
+
+            // Sync Header Dropdown
+            const selector = document.getElementById('agent-selector');
+            if (selector && selector.value !== agentKey) {
+                selector.value = agentKey;
+            }
+
+            const randomIndex = Math.floor(Math.random() * config.greetings.length);
+            let greeting = config.greetings[randomIndex];
+
+            const hour = new Date().getHours();
+            if (agentKey === 'aerohub') {
+                if (hour >= 12 && hour < 18) {
+                    greeting = "CloryAI AeroHub Agent chào buổi chiều, bạn cần tôi giúp gì?";
+                } else if (hour >= 18 || hour < 5) {
+                    greeting = "CloryAI AeroHub Agent chào buổi tối, bạn cần tôi giúp gì?";
+                }
+            }
+
+            agentWelcomeText.innerText = `"${greeting}"`;
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            setAssistantState('idle');
+        }
+
+        function setAssistantState(newState) {
+            currentState = newState;
+            const baseButtonClass = "w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-52 rounded-full flex flex-col items-center justify-center transition-all duration-300 active:scale-95 z-20 relative overflow-hidden border-2 ";
+
+            if (newState === 'idle') {
+                orbButton.className = baseButtonClass + "bg-abstract-gradient border-white/60 dark:border-cyan-300/40 orb-glow-idle";
+                orbIcon.className = "fa-solid fa-microphone text-3xl sm:text-4xl md:text-5xl text-white";
+                orbActionText.innerText = "CHẠM ĐỂ NÓI";
+                orbHintText.innerText = "Chạm vào quả cầu trung tâm để tương tác trực tiếp bằng giọng nói";
+                voiceBars.classList.add('hidden');
+                orbIconWrapper.classList.remove('hidden');
+
+                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-slate-900 border border-emerald-400/50 text-emerald-600 dark:text-emerald-400 text-xs font-medium shadow-sm";
+                statusDot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+                statusText.innerText = "SẴN SÀNG";
+
+            } else if (newState === 'listening') {
+                orbButton.className = baseButtonClass + "bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-500 border-emerald-300 orb-glow-listening scale-105";
+                orbIcon.className = "fa-solid fa-waveform text-3xl sm:text-4xl md:text-5xl text-white animate-pulse";
+                orbActionText.innerText = "ĐANG LẮNG NGHE";
+                orbHintText.innerText = "Hãy nói rõ câu hỏi hoặc yêu cầu của bạn...";
+                voiceBars.classList.add('hidden');
+                orbIconWrapper.classList.remove('hidden');
+
+                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950 border border-emerald-400 text-emerald-800 dark:text-emerald-300 text-xs font-medium shadow-sm animate-pulse";
+                statusDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+                statusText.innerText = "ĐANG LẮNG NGHE...";
+
+            } else if (newState === 'thinking') {
+                orbButton.className = baseButtonClass + "bg-gradient-to-tr from-amber-600 via-orange-600 to-amber-500 border-amber-300 orb-glow-thinking";
+                orbIcon.className = "fa-solid fa-circle-notch text-3xl sm:text-4xl md:text-5xl text-white animate-spin";
+                orbActionText.innerText = "ĐANG XỬ LÝ";
+                orbHintText.innerText = "CloryAI đang truy xuất dữ liệu hệ thống...";
+                voiceBars.classList.add('hidden');
+                orbIconWrapper.classList.remove('hidden');
+
+                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950 border border-amber-400 text-amber-800 dark:text-amber-300 text-xs font-medium shadow-sm";
+                statusDot.className = "w-2 h-2 rounded-full bg-amber-500 animate-ping";
+                statusText.innerText = "ĐANG SUY NGHĨ";
+
+            } else if (newState === 'speaking') {
+                orbButton.className = baseButtonClass + "bg-gradient-to-tr from-cyan-600 via-sky-600 to-blue-600 border-cyan-300 orb-glow-speaking scale-105";
+                orbActionText.innerText = "ĐANG PHÁT ÂM";
+                orbHintText.innerText = "Chạm vào quả cầu nếu bạn muốn dừng lời nói";
+                orbIconWrapper.classList.add('hidden');
+                voiceBars.classList.remove('hidden');
+
+                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950 border border-cyan-400 text-cyan-800 dark:text-cyan-300 text-xs font-medium shadow-sm";
+                statusDot.className = "w-2 h-2 rounded-full bg-cyan-500 animate-pulse";
+                statusText.innerText = "ĐANG TRẢ LỜI";
+            }
+        }
+
+        function initSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) return;
+
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'vi-VN';
+
+            recognition.onstart = function() {
+                isRecognizing = true;
+                setAssistantState('listening');
+            };
+
+            recognition.onresult = function(event) {
+                const speechResult = event.results[0][0].transcript;
+                processUserQuery(speechResult);
+            };
+
+            recognition.onerror = function(event) {
+                isRecognizing = false;
+                setAssistantState('idle');
+            };
+
+            recognition.onend = function() {
+                isRecognizing = false;
+                if (currentState === 'listening') setAssistantState('idle');
+            };
+        }
+
+        function processUserQuery(text) {
+            setAssistantState('thinking');
+            setTimeout(() => {
+                let responseText = "";
+                const agent = agentsConfig[currentAgentKey].name;
+
+                if (currentAgentKey === 'logistics') {
+                    responseText = `[${agent}] Đã tiếp nhận yêu cầu "${text}". Hệ thống điều hành đang kiểm tra thông tin Pallet và tuyến đường AGV.`;
+                } else if (currentAgentKey === 'aerohub') {
+                    responseText = `[${agent}] Đã ghi nhận thắc mắc "${text}". Dữ liệu chuyến bay và cổng Terminal đã được tối ưu hóa.`;
+                } else {
+                    responseText = `[${agent}] Cảm ơn bạn. Tôi đã ghi nhận yêu cầu "${text}" và sẵn sàng hỗ trợ bạn ngay lập tức!`;
+                }
+
+                agentWelcomeText.innerText = `"${responseText}"`;
+                speakResponse(responseText);
+            }, 800);
+        }
+
+        function speakResponse(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'vi-VN';
+                utterance.rate = 1.0;
+
+                utterance.onstart = () => setAssistantState('speaking');
+                utterance.onend = () => setAssistantState('idle');
+                utterance.onerror = () => setAssistantState('idle');
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                setAssistantState('idle');
+            }
+        }
+
+        function handleOrbClick() {
+            if (currentState === 'speaking') {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                setAssistantState('idle');
+                return;
+            }
+
+            if (currentState === 'listening') {
+                if (recognition && isRecognizing) recognition.stop();
+                setAssistantState('idle');
+                return;
+            }
+
+            if (currentState === 'idle') {
+                if (recognition) {
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        simulateVoiceInteraction();
+                    }
+                } else {
+                    simulateVoiceInteraction();
+                }
+            }
+        }
+
+        function simulateVoiceInteraction() {
+            setAssistantState('listening');
+            setTimeout(() => {
+                const sampleQueries = [
+                    "Kiểm tra vị trí Pallet #8821",
+                    "Xe AGV-01 còn bao nhiêu phần trăm pin?",
+                    "Dẫn đường đến Cổng xuất hàng Zone D"
+                ];
+                const query = sampleQueries[Math.floor(Math.random() * sampleQueries.length)];
+                processUserQuery(query);
+            }, 1800);
+        }
+
+        function initCanvasVisualizer() {
+            canvas = document.getElementById('orb-canvas');
+            if (!canvas) return;
+            ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width * window.devicePixelRatio;
+                canvas.height = rect.height * window.devicePixelRatio;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            let step = 0;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const width = canvas.width;
+                const centerX = width / 2;
+                const centerY = width / 2;
+                const radius = (width / 2) - 10;
+
+                ctx.save();
+                ctx.beginPath();
+                step += 0.04;
+
+                let waveAmplitude = 3;
+                if (currentState === 'listening') waveAmplitude = 8;
+                if (currentState === 'thinking') waveAmplitude = 5;
+                if (currentState === 'speaking') waveAmplitude = 12;
+
+                for (let i = 0; i < 360; i += 2) {
+                    const angle = (i * Math.PI) / 180;
+                    const offset = Math.sin(angle * 8 + step) * waveAmplitude;
+                    const r = radius + offset;
+                    const x = centerX + r * Math.cos(angle);
+                    const y = centerY + r * Math.sin(angle);
+
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+
+                let strokeColor = isDarkMode ? 'rgba(6, 182, 212, 0.5)' : 'rgba(8, 145, 178, 0.6)';
+                if (currentState === 'listening') strokeColor = 'rgba(16, 185, 129, 0.8)';
+                if (currentState === 'thinking') strokeColor = 'rgba(245, 158, 11, 0.8)';
+                if (currentState === 'speaking') strokeColor = 'rgba(14, 165, 233, 0.9)';
+
+                ctx.strokeStyle = strokeColor;
+                ctx.lineWidth = 2.5 * window.devicePixelRatio;
+                ctx.stroke();
+                ctx.restore();
+
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function getAllSessions() {
+            try {
+                return JSON.parse(localStorage.getItem('clory_all_sessions')) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveAllSessions(sessions) {
+            localStorage.setItem('clory_all_sessions', JSON.stringify(sessions));
+        }
+
+        function getCurrentSession() {
+            try {
+                return JSON.parse(localStorage.getItem('clory_current_user_session'));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function setCurrentSession(sessionData) {
+            localStorage.setItem('clory_current_user_session', JSON.stringify(sessionData));
+            
+            let sessions = getAllSessions();
+            const index = sessions.findIndex(s => s.id === sessionData.id);
+            if (index >= 0) {
+                sessions[index] = sessionData;
+            } else {
+                sessions.unshift(sessionData);
+            }
+            saveAllSessions(sessions);
+        }
+
+        function getAdminNotifyEmail() {
+            return localStorage.getItem('clory_admin_notify_email') || 'lamthenhan@gmail.com';
+        }
+
+        function saveAdminNotifyEmail() {
+            const emailInput = document.getElementById('admin-notify-email-input').value.trim();
+            if (emailInput && emailInput.includes('@')) {
+                localStorage.setItem('clory_admin_notify_email', emailInput);
+                showToast("Đã cập nhật Email nhận thông báo Lead!", "success");
+            } else {
+                showToast("Email không hợp lệ!", "error");
+            }
+        }
+
+        function handleSocialAuth(provider) {
+            pendingSocialProvider = provider;
+            
+            const selectedAgent = document.getElementById('reg-agent-interest').value;
+
+            pendingSocialProfile = {
+                name: 'Nguyễn Văn A (Verified Google)',
+                company: 'Doanh nghiệp Google Partner',
+                email: 'nguyenvana.verified@gmail.com',
+                interestedAgent: selectedAgent
+            };
+
+            document.getElementById('social-user-display').innerText = `Xin chào ${pendingSocialProfile.name} (${pendingSocialProfile.email})`;
+            document.getElementById('reg-step-1').classList.add('hidden');
+            document.getElementById('reg-step-2').classList.remove('hidden');
+        }
+
+        function backToRegStep1() {
+            document.getElementById('reg-step-2').classList.add('hidden');
+            document.getElementById('reg-step-1').classList.remove('hidden');
+        }
+
+        function submitSocialZaloMagicLink() {
+            const phone = document.getElementById('social-zalo-phone').value.trim();
+            if (!phone) {
+                showToast("Vui lòng nhập Số điện thoại Zalo của bạn!", "error");
+                return;
+            }
+
+            const now = Date.now();
+            const sessionId = 'session_social_' + now + '_' + Math.floor(Math.random() * 1000);
+            const selectedAgent = pendingSocialProfile ? pendingSocialProfile.interestedAgent : document.getElementById('reg-agent-interest').value;
+
+            userLeadData = {
+                id: sessionId,
+                name: pendingSocialProfile.name,
+                company: pendingSocialProfile.company,
+                phone: phone,
+                email: pendingSocialProfile.email,
+                interestedAgent: selectedAgent,
+                authProvider: pendingSocialProvider,
+                startTime: now,
+                durationMs: 60 * 60 * 1000, // 60 mins
+                ip: userIpAddress,
+                status: 'active',
+                csat: null
+            };
+
+            setCurrentSession(userLeadData);
+            sendLeadNotification(userLeadData);
+
+            // Apply interested agent
+            changeAgent(selectedAgent);
+
+            registrationModal.classList.add('opacity-0', 'pointer-events-none');
+            showToast("Đã gửi Zalo Magic Link & Kích hoạt trải nghiệm!", "success");
+            startQuotaCountdown();
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const selectedAgent = document.getElementById('reg-agent-interest').value;
+            const name = document.getElementById('lead-name').value.trim() || 'Khách hàng';
+            const company = document.getElementById('lead-company').value.trim() || 'Đơn vị trải nghiệm';
+            const phone = document.getElementById('lead-phone').value.trim();
+            const email = document.getElementById('lead-email').value.trim();
+
+            if (!phone || !email) {
+                showToast("Vui lòng nhập đầy đủ Số điện thoại và Email!", "error");
+                return;
+            }
+
+            const now = Date.now();
+            const sessionId = 'session_' + now + '_' + Math.floor(Math.random() * 1000);
+
+            userLeadData = {
+                id: sessionId,
+                name: name,
+                company: company,
+                phone: phone,
+                email: email,
+                interestedAgent: selectedAgent,
+                authProvider: 'classic',
+                startTime: now,
+                durationMs: 60 * 60 * 1000, // 60 mins
+                ip: userIpAddress,
+                status: 'active',
+                csat: null
+            };
+
+            setCurrentSession(userLeadData);
+            sendLeadNotification(userLeadData);
+
+            // Apply interested agent
+            changeAgent(selectedAgent);
+
+            registrationModal.classList.add('opacity-0', 'pointer-events-none');
+            showToast("Đăng ký thành công! Bắt đầu trải nghiệm CloryAI", "success");
+            startQuotaCountdown();
+        }
+
+        function sendLeadNotification(data) {
+            const recipientEmail = getAdminNotifyEmail();
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    target_email: recipientEmail,
+                    title: "NEW CLORYAI LEAD REGISTRATION",
+                    lead: data,
+                    timestamp: new Date().toISOString()
+                })
+            }).catch(err => console.log("Dispatch log queued"));
+        }
+
+        function startQuotaCountdown() {
+            if (quotaInterval) clearInterval(quotaInterval);
+
+            quotaInterval = setInterval(() => {
+                const currentSession = getCurrentSession();
+                if (!currentSession) return;
+
+                const elapsed = Date.now() - currentSession.startTime;
+                const remaining = currentSession.durationMs - elapsed;
+
+                if (remaining <= 0 || currentSession.status === 'locked') {
+                    clearInterval(quotaInterval);
+                    quotaTimerText.innerText = "00:00";
+                    showExpiredModal();
+                } else {
+                    const totalSecs = Math.floor(remaining / 1000);
+                    const mins = String(Math.floor(totalSecs / 60)).padStart(2, '0');
+                    const secs = String(totalSecs % 60).padStart(2, '0');
+                    quotaTimerText.innerText = `${mins}:${secs}`;
+                }
+            }, 1000);
+        }
+
+        function showExpiredModal() {
+            expiredModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function openCsatModal() {
+            setCsatRating(5);
+            csatModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeCsatModal() {
+            csatModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function setCsatRating(rating) {
+            csatSelectedRating = rating;
+            const stars = document.querySelectorAll('.csat-star');
+            const ratingLabel = document.getElementById('rating-label-text');
+
+            const labels = {
+                1: "Rất không hài lòng (1/5 ⭐)",
+                2: "Không hài lòng (2/5 ⭐)",
+                3: "Bình thường (3/5 ⭐)",
+                4: "Hài lòng (4/5 ⭐)",
+                5: "Rất hài lòng (5/5 ⭐)"
+            };
+
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.className = "fa-solid fa-star csat-star text-amber-400 transition-transform hover:scale-125";
+                } else {
+                    star.className = "fa-regular fa-star csat-star text-slate-400 transition-transform hover:scale-125";
+                }
+            });
+
+            if (ratingLabel) ratingLabel.innerText = labels[rating];
+        }
+
+        function handleCsatSubmit(e) {
+            e.preventDefault();
+            const checkedFeatures = Array.from(document.querySelectorAll('.csat-feature-check:checked')).map(el => el.value);
+            const plan = document.getElementById('csat-plan-select').value;
+            const comment = document.getElementById('csat-comment').value.trim();
+
+            const csatData = {
+                rating: csatSelectedRating,
+                features: checkedFeatures,
+                plan: plan,
+                comment: comment,
+                submittedAt: new Date().toISOString()
+            };
+
+            let currentSession = getCurrentSession();
+            if (currentSession) {
+                currentSession.csat = csatData;
+                currentSession.durationMs += 15 * 60 * 1000; // Reward +15 mins
+                setCurrentSession(currentSession);
+                startQuotaCountdown();
+            }
+
+            const recipientEmail = getAdminNotifyEmail();
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    target_email: recipientEmail,
+                    title: "CLORYAI CSAT SURVEY SUBMISSION",
+                    lead: currentSession,
+                    csat: csatData
+                })
+            }).catch(err => console.log("CSAT dispatch queued"));
+
+            closeCsatModal();
+            showToast("Cảm ơn bạn! Đã ghi nhận CSAT & thưởng +15 phút trải nghiệm!", "success");
+            renderAdminSessions();
+        }
+
+        function handleHeaderAvatarClick() {
+            headerAvatarTapCount++;
+            if (headerAvatarTapTimer) clearTimeout(headerAvatarTapTimer);
+
+            headerAvatarTapTimer = setTimeout(() => {
+                headerAvatarTapCount = 0;
+            }, 2000);
+
+            if (headerAvatarTapCount >= 5) {
+                headerAvatarTapCount = 0;
+                openAdminAuthModal();
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+                e.preventDefault();
+                openAdminAuthModal();
+            }
+        });
+
+        function openAdminAuthModal() {
+            document.getElementById('admin-pass-input').value = '';
+            document.getElementById('admin-auth-sec').classList.remove('hidden');
+            document.getElementById('admin-controls-sec').classList.add('hidden');
+            adminModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function verifyAdminPass() {
+            const pass = document.getElementById('admin-pass-input').value.trim();
+            if (pass === 'cxclory@dntg26') {
+                document.getElementById('admin-auth-sec').classList.add('hidden');
+                document.getElementById('admin-controls-sec').classList.remove('hidden');
+                document.getElementById('admin-notify-email-input').value = getAdminNotifyEmail();
+                renderAdminSessions();
+                showToast("Đăng nhập Admin thành công", "success");
+            } else {
+                showToast("Mật khẩu Admin không chính xác!", "error");
+            }
+        }
+
+        function closeAdminModal() {
+            adminModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function setAdminFilter(filterType) {
+            adminCurrentFilter = filterType;
+            ['all', 'active', 'expired'].forEach(f => {
+                const btn = document.getElementById(`filter-btn-${f}`);
+                if (f === filterType) {
+                    btn.className = "px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-semibold";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold";
+                }
+            });
+            renderAdminSessions();
+        }
+
+        function filterAdminSessions() {
+            adminSearchQuery = document.getElementById('admin-search-input').value.toLowerCase().trim();
+            renderAdminSessions();
+        }
+
+        function renderAdminSessions() {
+            const tbody = document.getElementById('admin-sessions-tbody');
+            if (!tbody) return;
+
+            let sessions = getAllSessions();
+
+            if (adminSearchQuery) {
+                sessions = sessions.filter(s => 
+                    (s.name && s.name.toLowerCase().includes(adminSearchQuery)) ||
+                    (s.company && s.company.toLowerCase().includes(adminSearchQuery)) ||
+                    (s.phone && s.phone.includes(adminSearchQuery)) ||
+                    (s.email && s.email.toLowerCase().includes(adminSearchQuery))
+                );
+            }
+
+            const now = Date.now();
+            if (adminCurrentFilter === 'active') {
+                sessions = sessions.filter(s => s.status !== 'locked' && (now - s.startTime < s.durationMs));
+            } else if (adminCurrentFilter === 'expired') {
+                sessions = sessions.filter(s => s.status === 'locked' || (now - s.startTime >= s.durationMs));
+            }
+
+            document.getElementById('admin-session-count').innerText = `Hiển thị ${sessions.length} phiên trải nghiệm`;
+
+            if (sessions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">Không tìm thấy dữ liệu phiên trải nghiệm nào</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = sessions.map(s => {
+                const elapsed = now - s.startTime;
+                const remaining = s.durationMs - elapsed;
+                const isExpired = s.status === 'locked' || remaining <= 0;
+
+                let remainingText = "Hết hạn";
+                if (!isExpired) {
+                    const totalSecs = Math.floor(remaining / 1000);
+                    const mins = Math.floor(totalSecs / 60);
+                    remainingText = `${mins} phút`;
+                }
+
+                const csatText = s.csat ? `${s.csat.rating}⭐` : 'Chưa';
+
+                return `
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                        <td class="p-3 font-semibold text-slate-900 dark:text-slate-100">${s.name}</td>
+                        <td class="p-3">${s.company}</td>
+                        <td class="p-3 font-mono text-[11px]">${s.phone}<br><span class="text-slate-400">${s.email}</span></td>
+                        <td class="p-3 font-mono font-bold text-amber-500">${csatText}</td>
+                        <td class="p-3 font-mono font-bold ${isExpired ? 'text-rose-500' : 'text-emerald-500'}">${remainingText}</td>
+                        <td class="p-3">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase ${isExpired ? 'bg-rose-100 dark:bg-rose-950 text-rose-600' : 'bg-emerald-100 dark:bg-emerald-950 text-emerald-600'}">
+                                ${isExpired ? 'Hết hạn' : 'Đang chạy'}
+                            </span>
+                        </td>
+                        <td class="p-3 text-right space-x-1">
+                            <button onclick="extendSessionTime('${s.id}', 15)" class="px-2 py-1 bg-cyan-600/20 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-600 hover:text-white rounded font-mono font-bold text-[10px] transition-colors">+15m</button>
+                            <button onclick="extendSessionTime('${s.id}', 30)" class="px-2 py-1 bg-amber-600/20 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white rounded font-mono font-bold text-[10px] transition-colors">+30m</button>
+                            <button onclick="toggleLockSession('${s.id}')" class="px-2 py-1 ${isExpired ? 'bg-emerald-600/20 text-emerald-600' : 'bg-rose-600/20 text-rose-600'} hover:opacity-80 rounded font-bold text-[10px] transition-colors">
+                                ${isExpired ? 'Mở lại' : '🔒 Khóa'}
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function extendSessionTime(sessionId, minutes) {
+            let sessions = getAllSessions();
+            const session = sessions.find(s => s.id === sessionId);
+            if (session) {
+                session.durationMs += minutes * 60 * 1000;
+                session.status = 'active';
+                saveAllSessions(sessions);
+
+                const current = getCurrentSession();
+                if (current && current.id === sessionId) {
+                    setCurrentSession(session);
+                    expiredModal.classList.add('opacity-0', 'pointer-events-none');
+                    startQuotaCountdown();
+                }
+                renderAdminSessions();
+                showToast(`Đã thêm +${minutes} phút vào phiên trải nghiệm`, "success");
+            }
+        }
+
+        function toggleLockSession(sessionId) {
+            let sessions = getAllSessions();
+            const session = sessions.find(s => s.id === sessionId);
+            if (session) {
+                const now = Date.now();
+                if (session.status === 'locked' || (now - session.startTime >= session.durationMs)) {
+                    session.status = 'active';
+                    session.startTime = Date.now();
+                } else {
+                    session.status = 'locked';
+                }
+                saveAllSessions(sessions);
+
+                const current = getCurrentSession();
+                if (current && current.id === sessionId) {
+                    setCurrentSession(session);
+                    if (session.status === 'locked') showExpiredModal();
+                    else {
+                        expiredModal.classList.add('opacity-0', 'pointer-events-none');
+                        startQuotaCountdown();
+                    }
+                }
+                renderAdminSessions();
+                showToast(session.status === 'locked' ? "Đã khóa phiên trải nghiệm" : "Đã mở khóa phiên trải nghiệm", "info");
+            }
+        }
+
+        function clearAllSessionsData() {
+            localStorage.removeItem('clory_all_sessions');
+            localStorage.removeItem('clory_current_user_session');
+            renderAdminSessions();
+            showToast("Đã xóa toàn bộ dữ liệu phiên trải nghiệm", "info");
+            setTimeout(() => location.reload(), 1000);
+        }
+
+        window.onload = function() {
+            initSpeechRecognition();
+            initCanvasVisualizer();
+            setAssistantState('idle');
+
+            const activeSession = getCurrentSession();
+            if (!activeSession) {
+                changeAgent('logistics');
+                registrationModal.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                if (activeSession.interestedAgent) {
+                    changeAgent(activeSession.interestedAgent);
+                } else {
+                    changeAgent('logistics');
+                }
+
+                const elapsed = Date.now() - activeSession.startTime;
+                if (elapsed >= activeSession.durationMs || activeSession.status === 'locked') {
+                    showExpiredModal();
+                } else {
+                    startQuotaCountdown();
+                }
+            }
+        };
+    </script>
+</body>
+</html>
