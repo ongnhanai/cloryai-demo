@@ -57,6 +57,7 @@
         body {
             font-family: 'Inter', sans-serif;
             touch-action: manipulation;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Tech grid background pattern */
@@ -126,7 +127,7 @@
         }
     </style>
 </head>
-<body class="h-full w-full bg-[#f1f5f9] dark:bg-[#060913] text-slate-800 dark:text-slate-100 font-sans antialiased overflow-hidden flex flex-col justify-between relative bg-grid-tech transition-colors duration-300">
+<body class="h-full w-full bg-[#f8fafc] dark:bg-[#060913] text-slate-800 dark:text-slate-100 font-sans antialiased overflow-hidden flex flex-col justify-between relative bg-grid-tech transition-colors duration-300">
 
     <!-- Ambient background soft gradient glow -->
     <div id="ambient-bg-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/10 via-amber-500/10 to-orange-500/10 rounded-full blur-[140px] pointer-events-none transition-all duration-700"></div>
@@ -139,7 +140,7 @@
             <button id="header-avatar-btn" onclick="handleHeaderAvatarClick()" class="relative group cursor-pointer focus:outline-none" title="CloryAI Agent Mini Orb (Click 5 lần mở Admin)">
                 <div class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-abstract-gradient mini-orb-glow animate-orb-pulse flex items-center justify-center p-0.5 border border-white/40 dark:border-cyan-300/40 shadow-md transition-transform group-hover:scale-105 active:scale-95">
                     <div class="w-full h-full rounded-full bg-slate-900/20 backdrop-blur-[1px] flex items-center justify-center text-white relative">
-                        <i class="fa-solid fa-headset text-xs md:text-sm text-cyan-100 drop-shadow-sm"></i>
+                        <i id="agent-header-icon" class="fa-solid fa-truck-fast text-xs md:text-sm text-cyan-100 drop-shadow-sm transition-all duration-300"></i>
                         <span class="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-300"></span>
@@ -153,9 +154,9 @@
                 <label for="agent-selector" class="text-[10px] font-mono tracking-wider text-slate-400 dark:text-slate-500 font-semibold uppercase">CHỌN AI AGENT TRẢI NGHIỆM</label>
                 <div class="relative mt-0.5">
                     <select id="agent-selector" onchange="changeAgent(this.value)" class="appearance-none bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm md:text-base pr-8 pl-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-cyan-500 cursor-pointer shadow-sm transition-colors">
-                        <option value="logistics">CloryAI Fleet Agent</option>
-                        <option value="aerohub">CloryAI AeroHub Agent</option>
-                        <option value="concierge">CloryAI Concierge Agent</option>
+                        <option value="logistics">🚚 CloryAI Fleet Agent</option>
+                        <option value="aerohub">✈️ CloryAI AeroHub Agent</option>
+                        <option value="concierge">🛎️ CloryAI Concierge Agent</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
                         <i class="fa-solid fa-chevron-down text-xs"></i>
@@ -230,7 +231,7 @@
 
             <!-- Dynamic Agent Welcome Subtext -->
             <div class="mt-8 max-w-lg px-4 text-center">
-                <p id="agent-welcome-text" class="text-sm sm:text-base md:text-lg text-slate-700 dark:text-slate-200 font-semibold transition-all duration-300 leading-relaxed drop-shadow-sm">
+                <p id="agent-welcome-text" class="text-sm sm:text-base md:text-lg text-slate-800 dark:text-slate-200 font-semibold transition-all duration-300 leading-relaxed drop-shadow-sm">
                     "CloryAI Fleet Agent xin chào, hôm nay tôi có thể giúp gì cho bạn?"
                 </p>
                 <p id="orb-hint-text" class="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
@@ -241,13 +242,15 @@
 
     </main>
 
+    <!-- Floating CSAT Action Button (Updated Label & Removed +15m Badge) -->
     <div class="fixed bottom-16 right-4 sm:bottom-20 sm:right-6 z-30">
-        <button onclick="openCsatModal()" class="animate-csat-pulse bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl csat-float-glow border border-amber-200/50 flex items-center space-x-2 transition-transform hover:scale-105 active:scale-95" title="Đánh giá chất lượng trải nghiệm">
+        <button onclick="openCsatModal()" class="animate-csat-pulse bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white px-4 py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl csat-float-glow border border-amber-200/50 flex items-center space-x-2 transition-transform hover:scale-105 active:scale-95" title="Đánh giá chất lượng trải nghiệm">
             <i class="fa-solid fa-star text-amber-200 animate-spin text-sm" style="animation-duration: 6s;"></i>
             <span class="uppercase tracking-wider">ĐÁNH GIÁ CỦA BẠN</span>
         </button>
     </div>
 
+    <!-- Footer -->
     <footer class="w-full py-3.5 px-6 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 flex flex-col items-center justify-center text-xs text-slate-500 dark:text-slate-400 z-20 shrink-0 transition-colors duration-300 space-y-1">
         <div class="text-center font-medium">
             © 2026 CloryAI Assistant. Powered by <a href="https://www.dntg.com.vn" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 font-semibold underline underline-offset-2 hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">DNTG</a>. All rights reserved.
@@ -259,14 +262,15 @@
         </div>
     </footer>
 
+    <!-- Lead Registration Modal -->
     <div id="registration-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative overflow-hidden">
             
-            <!-- Modal Header with Mini Gradient Pulse Orb Icon -->
+            <!-- Modal Header -->
             <div class="flex flex-col items-center text-center mb-5">
                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-abstract-gradient mini-orb-glow animate-orb-pulse flex items-center justify-center p-0.5 mb-3 border border-white/50 dark:border-cyan-300/40 shadow-lg">
                     <div class="w-full h-full rounded-full bg-slate-900/20 backdrop-blur-[1px] flex items-center justify-center text-white relative">
-                        <i class="fa-solid fa-headset text-lg sm:text-xl text-cyan-100 drop-shadow"></i>
+                        <i id="reg-modal-agent-icon" class="fa-solid fa-truck-fast text-lg sm:text-xl text-cyan-100 drop-shadow"></i>
                         <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-300"></span>
@@ -288,10 +292,10 @@
                         Bạn quan tâm ứng dụng AI cho lĩnh vực nào? <span class="text-cyan-600 dark:text-cyan-400">*</span>
                     </label>
                     <div class="relative">
-                        <select id="reg-agent-interest" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm focus:outline-none focus:border-cyan-500 cursor-pointer shadow-sm appearance-none pr-8">
-                            <option value="logistics">Logistics, Warehouse, Fleet</option>
-                            <option value="aerohub">Hàng không, Sân bay, Vận tải</option>
-                            <option value="concierge">Khách sạn, Resort, Hospitality</option>
+                        <select id="reg-agent-interest" onchange="syncRegModalIcon(this.value)" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm focus:outline-none focus:border-cyan-500 cursor-pointer shadow-sm appearance-none pr-8">
+                            <option value="logistics">🚚 Logistics, Warehouse, Fleet</option>
+                            <option value="aerohub">✈️ Hàng không, Sân bay, Vận tải</option>
+                            <option value="concierge">🛎️ Khách sạn, Resort, Hospitality</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
                             <i class="fa-solid fa-chevron-down text-xs"></i>
@@ -373,6 +377,7 @@
         </div>
     </div>
 
+    <!-- CSAT Modal -->
     <div id="csat-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 max-w-lg w-full shadow-2xl relative overflow-hidden max-h-[90vh] overflow-y-auto">
             <button onclick="closeCsatModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg">
@@ -451,7 +456,7 @@
 
                 <button type="submit" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-paper-plane"></i>
-                    <span>GỬI ĐÁNH GIÁ CSAT & NHẬN THÊM +15m</span>
+                    <span>GỬI ĐÁNH GIÁ ĐẾN DNTG</span>
                 </button>
             </form>
         </div>
@@ -471,7 +476,7 @@
             <div class="mt-6 space-y-2.5">
                 <button onclick="openCsatModal()" class="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-xs uppercase tracking-wider shadow transition-all active:scale-95 flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-star"></i>
-                    <span>ĐÁNH GIÁ TRẢI NGHIỆM CSAT</span>
+                    <span>ĐÁNH GIÁ CỦA BẠN</span>
                 </button>
 
                 <a href="https://www.cloudpbx.vn/lien-he/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all active:scale-95">
@@ -481,6 +486,7 @@
         </div>
     </div>
 
+    <!-- Admin Panel Modal -->
     <div id="admin-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 max-w-4xl w-full shadow-2xl max-h-[90vh] flex flex-col">
             
@@ -575,7 +581,7 @@
         <span id="toast-msg">Thông báo hệ thống</span>
     </div>
 
-    <!-- In-App Confirm Dialog Modal -->
+    <!-- Confirm Dialog Modal -->
     <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 max-w-sm w-full text-center shadow-2xl space-y-4">
             <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center mx-auto text-xl">
@@ -612,9 +618,11 @@
         let adminCurrentFilter = 'all';
         let adminSearchQuery = '';
 
+        // Agent Metadata & Icons
         const agentsConfig = {
             logistics: {
                 name: "CloryAI Fleet Agent",
+                iconClass: "fa-solid fa-truck-fast",
                 greetings: [
                     "CloryAI Fleet Agent xin chào, hôm nay tôi có thể giúp gì cho bạn?",
                     "Chào bạn, tôi là CloryAI Fleet Agent phụ trách Logistics & Điều hành đội xe!",
@@ -623,6 +631,7 @@
             },
             aerohub: {
                 name: "CloryAI AeroHub Agent",
+                iconClass: "fa-solid fa-plane-departure",
                 greetings: [
                     "CloryAI AeroHub Agent chào buổi sáng, bạn cần tôi giúp gì?",
                     "Chào mừng bạn tới AeroHub! CloryAI sẵn sàng hỗ trợ thông tin các chuyến bay.",
@@ -631,6 +640,7 @@
             },
             concierge: {
                 name: "CloryAI Concierge Agent",
+                iconClass: "fa-solid fa-bell-concierge",
                 greetings: [
                     "CloryAI Concierge Agent sẵn sàng hỗ trợ, hãy nói với tôi nếu bạn cần hỗ trợ gì nhé!",
                     "Xin chào quý khách! Tôi là CloryAI Concierge Agent, rất vinh hạnh được phục vụ bạn.",
@@ -733,6 +743,14 @@
         setInterval(updateClock, 1000);
         updateClock();
 
+        function syncRegModalIcon(agentKey) {
+            const config = agentsConfig[agentKey];
+            const modalIcon = document.getElementById('reg-modal-agent-icon');
+            if (config && modalIcon) {
+                modalIcon.className = `${config.iconClass} text-lg sm:text-xl text-cyan-100 drop-shadow`;
+            }
+        }
+
         function changeAgent(agentKey) {
             currentAgentKey = agentKey;
             const config = agentsConfig[agentKey];
@@ -743,6 +761,14 @@
             if (selector && selector.value !== agentKey) {
                 selector.value = agentKey;
             }
+
+            // Sync Header Icon
+            const headerIcon = document.getElementById('agent-header-icon');
+            if (headerIcon) {
+                headerIcon.className = `${config.iconClass} text-xs md:text-sm text-cyan-100 drop-shadow-sm transition-all duration-300`;
+            }
+
+            syncRegModalIcon(agentKey);
 
             const randomIndex = Math.floor(Math.random() * config.greetings.length);
             let greeting = config.greetings[randomIndex];
@@ -1218,7 +1244,6 @@
             let currentSession = getCurrentSession();
             if (currentSession) {
                 currentSession.csat = csatData;
-                currentSession.durationMs += 15 * 60 * 1000; // Reward +15 mins
                 setCurrentSession(currentSession);
                 startQuotaCountdown();
             }
@@ -1236,7 +1261,7 @@
             }).catch(err => console.log("CSAT dispatch queued"));
 
             closeCsatModal();
-            showToast("Cảm ơn bạn! Đã ghi nhận CSAT & thưởng +15 phút trải nghiệm!", "success");
+            showToast("Cảm ơn bạn đã gửi đánh giá cho CloryAI!", "success");
             renderAdminSessions();
         }
 
