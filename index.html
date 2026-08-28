@@ -376,6 +376,11 @@
                         <i class="fa-solid fa-paper-plane"></i>
                         <span>BẮT ĐẦU TRÒ CHUYỆN CÙNG CLORYAI</span>
                     </button>
+
+                    <button type="button" onclick="closeRegistrationModalToDemo()" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider shadow-sm border border-slate-300 dark:border-slate-700 transition-all active:scale-95 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-desktop"></i>
+                        <span>XEM GIAO DIỆN DEMO</span>
+                    </button>
                 </form>
             </div>
 
@@ -540,6 +545,11 @@
                 <button onclick="openCsatModal()" class="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-xs uppercase tracking-wider shadow transition-all active:scale-95 flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-star"></i>
                     <span>ĐÁNH GIÁ CỦA BẠN</span>
+                </button>
+
+                <button onclick="closeExpiredModal()" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider shadow-sm border border-slate-300 dark:border-slate-700 transition-all active:scale-95 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-desktop"></i>
+                    <span>XEM GIAO DIỆN DEMO</span>
                 </button>
 
                 <a href="https://www.cloudpbx.vn/lien-he/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all active:scale-95">
@@ -1245,6 +1255,11 @@
             startQuotaCountdown();
         }
 
+        function closeRegistrationModalToDemo() {
+            registrationModal.classList.add('opacity-0', 'pointer-events-none');
+            showToast("Đang xem giao diện Demo CloryAI", "info");
+        }
+
         function sendLeadNotification(data) {
             const recipientEmail = getAdminNotifyEmail();
             fetch(WEBHOOK_URL, {
@@ -1284,6 +1299,11 @@
 
         function showExpiredModal() {
             expiredModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeExpiredModal() {
+            expiredModal.classList.add('opacity-0', 'pointer-events-none');
+            showToast("Đang xem giao diện Demo CloryAI", "info");
         }
 
         function openCsatModal() {
