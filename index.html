@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi" class="dark h-full w-full">
+<html lang="vi" class="h-full w-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CloryAI Agents - Next Generation Digital Workforce</title>
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,8 +13,23 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff5f2',
+                            100: '#ffe8e1',
+                            200: '#ffd0c3',
+                            300: '#ffab94',
+                            400: '#ff7754',
+                            500: '#dc5e3b', /* CloudXCS Terracotta Brand Color */
+                            600: '#ca4725',
+                            700: '#aa371a',
+                            800: '#8c301a',
+                            900: '#732c1b',
+                            950: '#3e130a'
+                        }
                     },
                     keyframes: {
                         wave: {
@@ -21,14 +37,14 @@
                             '50%': { height: '24px' }
                         },
                         orbPulse: {
-                            '0%, 100%': { transform: 'scale(1)', opacity: '0.9' },
-                            '50%': { transform: 'scale(1.08)', opacity: '1' }
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.95' },
+                            '50%': { transform: 'scale(1.06)', opacity: '1' }
                         },
                         heartbeat: {
                             '0%, 100%': { transform: 'scale(1)' },
-                            '14%': { transform: 'scale(1.06)' },
+                            '14%': { transform: 'scale(1.05)' },
                             '28%': { transform: 'scale(1)' },
-                            '42%': { transform: 'scale(1.06)' },
+                            '42%': { transform: 'scale(1.05)' },
                             '70%': { transform: 'scale(1)' }
                         }
                     },
@@ -42,10 +58,11 @@
         }
     </script>
 
+    <!-- FontAwesome & Google Fonts (Plus Jakarta Sans) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -55,62 +72,62 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             touch-action: manipulation;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Tech grid background pattern */
+        /* Tech grid background pattern for Light & Dark mode */
         .bg-grid-tech {
             background-size: 32px 32px;
-            background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(220, 94, 59, 0.12) 1.2px, transparent 1.2px);
         }
         .dark .bg-grid-tech {
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         }
 
-        /* Abstract Tri-Tone Gradient Orb (Ocean Teal, Sand Gold, Light Orange) */
+        /* Brand Tri-Tone Gradient Orb (CloudXCS Terracotta, Warm Gold, Soft Teal Accent) */
         .bg-abstract-gradient {
-            background: linear-gradient(135deg, #06b6d4 0%, #f59e0b 50%, #f97316 100%);
+            background: linear-gradient(135deg, #dc5e3b 0%, #f59e0b 55%, #06b6d4 100%);
         }
 
-        /* Ambient Glow Shadows */
+        /* Ambient Glow Shadows aligned with CloudXCS brand */
         .orb-glow-idle {
-            box-shadow: 0 0 50px 10px rgba(6, 182, 212, 0.3), inset 0 0 25px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 10px 40px 10px rgba(220, 94, 59, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.4);
         }
         .dark .orb-glow-idle {
-            box-shadow: 0 0 65px 18px rgba(6, 182, 212, 0.35), inset 0 0 35px rgba(249, 115, 22, 0.25);
+            box-shadow: 0 0 70px 20px rgba(220, 94, 59, 0.4), inset 0 0 35px rgba(220, 94, 59, 0.25);
         }
 
         .orb-glow-listening {
-            box-shadow: 0 0 75px 22px rgba(16, 185, 129, 0.4), inset 0 0 35px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 10px 45px 12px rgba(16, 185, 129, 0.35), inset 0 0 25px rgba(255, 255, 255, 0.5);
         }
         .dark .orb-glow-listening {
             box-shadow: 0 0 95px 28px rgba(52, 211, 153, 0.45), inset 0 0 45px rgba(52, 211, 153, 0.4);
         }
 
         .orb-glow-thinking {
-            box-shadow: 0 0 75px 22px rgba(245, 158, 11, 0.4), inset 0 0 35px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 10px 45px 12px rgba(245, 158, 11, 0.35), inset 0 0 25px rgba(255, 255, 255, 0.5);
         }
         .dark .orb-glow-thinking {
             box-shadow: 0 0 95px 28px rgba(251, 191, 36, 0.45), inset 0 0 45px rgba(251, 191, 36, 0.4);
         }
 
         .orb-glow-speaking {
-            box-shadow: 0 0 85px 28px rgba(14, 165, 233, 0.45), inset 0 0 40px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 12px 50px 15px rgba(220, 94, 59, 0.45), inset 0 0 30px rgba(255, 255, 255, 0.5);
         }
         .dark .orb-glow-speaking {
-            box-shadow: 0 0 105px 35px rgba(56, 189, 248, 0.5), inset 0 0 50px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 105px 35px rgba(220, 94, 59, 0.55), inset 0 0 50px rgba(220, 94, 59, 0.5);
         }
 
         /* Mini Orb Glow */
         .mini-orb-glow {
-            box-shadow: 0 0 14px 3px rgba(6, 182, 212, 0.45), inset 0 0 6px rgba(249, 115, 22, 0.35);
+            box-shadow: 0 4px 14px 2px rgba(220, 94, 59, 0.35);
         }
 
         /* High contrast pulsing CSAT Floating Badge */
         .csat-float-glow {
-            box-shadow: 0 0 20px 4px rgba(245, 158, 11, 0.5), 0 0 10px 2px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 8px 25px 4px rgba(220, 94, 59, 0.35), 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* Custom Scrollbar */
@@ -127,23 +144,23 @@
         }
     </style>
 </head>
-<body class="h-full w-full bg-[#f8fafc] dark:bg-[#060913] text-slate-800 dark:text-slate-100 font-sans antialiased overflow-hidden flex flex-col justify-between relative bg-grid-tech transition-colors duration-300">
+<body class="h-full w-full bg-[#f8fafc] dark:bg-[#070b14] text-slate-900 dark:text-slate-100 font-sans antialiased overflow-hidden flex flex-col justify-between relative bg-grid-tech transition-colors duration-300">
 
     <!-- Ambient background soft gradient glow -->
-    <div id="ambient-bg-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/10 via-amber-500/10 to-orange-500/10 rounded-full blur-[140px] pointer-events-none transition-all duration-700"></div>
+    <div id="ambient-bg-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-brand-500/15 via-amber-500/10 to-cyan-500/10 rounded-full blur-[140px] pointer-events-none transition-all duration-700"></div>
 
-    <header class="w-full px-4 py-3 md:px-8 md:py-4 bg-white/90 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 flex items-center justify-between z-20 shrink-0 transition-colors duration-300">
+    <header class="w-full px-4 py-3 md:px-8 md:py-3.5 bg-white/95 dark:bg-slate-950/85 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 flex items-center justify-between z-20 shrink-0 transition-colors duration-300 shadow-sm">
         
-        <!-- AI Agent Selector Dropdown with Mini Gradient Pulse Orb Icon -->
+        <!-- AI Agent Selector Dropdown with CloudXCS Logo / Mini Orb -->
         <div class="flex items-center space-x-3">
             <!-- Mini Gradient Pulse Orb Header Avatar (5 Taps Opens Secret Admin Panel) -->
             <button id="header-avatar-btn" onclick="handleHeaderAvatarClick()" class="relative group cursor-pointer focus:outline-none" title="CloryAI Agent Mini Orb (Click 5 lần mở Admin)">
-                <div class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-abstract-gradient mini-orb-glow animate-orb-pulse flex items-center justify-center p-0.5 border border-white/40 dark:border-cyan-300/40 shadow-md transition-transform group-hover:scale-105 active:scale-95">
-                    <div class="w-full h-full rounded-full bg-slate-900/20 backdrop-blur-[1px] flex items-center justify-center text-white relative">
-                        <i id="agent-header-icon" class="fa-solid fa-truck-fast text-xs md:text-sm text-cyan-100 drop-shadow-sm transition-all duration-300"></i>
+                <div class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-abstract-gradient mini-orb-glow animate-orb-pulse flex items-center justify-center p-0.5 border border-white dark:border-brand-300/40 shadow-md transition-transform group-hover:scale-105 active:scale-95">
+                    <div class="w-full h-full rounded-full bg-slate-900/15 backdrop-blur-[1px] flex items-center justify-center text-white relative">
+                        <i id="agent-header-icon" class="fa-solid fa-truck-fast text-xs md:text-sm text-white drop-shadow-sm transition-all duration-300"></i>
                         <span class="absolute -top-0.5 -right-0.5 flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-300"></span>
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-300"></span>
                         </span>
                     </div>
                 </div>
@@ -151,9 +168,12 @@
 
             <!-- Multi-Agent Dropdown Selection -->
             <div class="flex flex-col">
-                <label for="agent-selector" class="text-[10px] font-mono tracking-wider text-slate-400 dark:text-slate-500 font-semibold uppercase">CHỌN AI AGENT TRẢI NGHIỆM</label>
+                <div class="flex items-center space-x-1.5">
+                    <span class="text-[10px] font-mono tracking-wider text-slate-500 dark:text-slate-400 font-bold uppercase">CHỌN AI AGENT TRẢI NGHIỆM</span>
+                    <span class="px-1.5 py-0.2 text-[9px] font-extrabold bg-brand-500/15 text-brand-700 dark:text-brand-400 rounded border border-brand-500/30 uppercase">CloudXCS</span>
+                </div>
                 <div class="relative mt-0.5">
-                    <select id="agent-selector" onchange="changeAgent(this.value)" class="appearance-none bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm md:text-base pr-8 pl-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-cyan-500 cursor-pointer shadow-sm transition-colors">
+                    <select id="agent-selector" onchange="changeAgent(this.value)" class="appearance-none bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-bold text-xs sm:text-sm md:text-base pr-8 pl-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none focus:border-brand-500 cursor-pointer shadow-sm transition-colors">
                         <option value="logistics">🚚 CloryAI Fleet Agent</option>
                         <option value="aerohub">✈️ CloryAI AeroHub Agent</option>
                         <option value="concierge">🛎️ CloryAI Concierge Agent</option>
@@ -168,26 +188,26 @@
         <!-- Realtime Clock, Quota Badge & Theme Toggle -->
         <div class="flex items-center space-x-3 sm:space-x-4">
             <!-- 60-Min Quota Countdown Badge -->
-            <div id="quota-badge" class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyan-50 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-700 text-cyan-700 dark:text-cyan-300 text-xs font-mono font-bold shadow-sm">
-                <i class="fa-solid fa-stopwatch text-cyan-500 animate-pulse"></i>
+            <div id="quota-badge" class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-50 dark:bg-slate-900 border border-brand-300 dark:border-brand-800 text-brand-700 dark:text-brand-400 text-xs font-mono font-bold shadow-sm">
+                <i class="fa-solid fa-stopwatch text-brand-500 animate-pulse"></i>
                 <span>TRẢI NGHIỆM: <strong id="quota-timer-text">60:00</strong></span>
             </div>
 
             <!-- Realtime Clock -->
             <div class="hidden md:flex flex-col items-end font-mono">
-                <span id="header-clock-time" class="text-base font-bold text-slate-800 dark:text-slate-100 tracking-wider">14:30:00</span>
-                <span id="header-clock-date" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">18/08/2026</span>
+                <span id="header-clock-time" class="text-base font-bold text-slate-900 dark:text-slate-100 tracking-wider">14:30:00</span>
+                <span id="header-clock-date" class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">28/08/2026</span>
             </div>
 
             <!-- Status Badge -->
-            <div id="status-badge" class="hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-slate-900 border border-emerald-400/50 text-emerald-600 dark:text-emerald-400 text-xs font-medium shadow-sm">
+            <div id="status-badge" class="hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-slate-900 border border-emerald-400/50 text-emerald-700 dark:text-emerald-400 text-xs font-medium shadow-sm">
                 <span id="status-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span id="status-text" class="font-semibold tracking-wide">SẴN SÀNG</span>
             </div>
 
             <!-- Dark / Light Theme Toggle -->
-            <button id="theme-toggle-btn" onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-amber-400 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm" title="Chuyển chế độ Sáng / Tối">
-                <i id="theme-toggle-icon" class="fa-solid fa-sun text-sm"></i>
+            <button id="theme-toggle-btn" onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-amber-400 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-sm" title="Chuyển chế độ Sáng / Tối">
+                <i id="theme-toggle-icon" class="fa-solid fa-moon text-sm text-slate-700"></i>
             </button>
         </div>
     </header>
@@ -198,9 +218,9 @@
         <div class="relative flex flex-col items-center justify-center my-auto cursor-pointer group" onclick="handleOrbClick()">
             
             <!-- Outer Decorative Rings -->
-            <div id="ring-outer-3" class="absolute w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full border border-cyan-500/20 dark:border-cyan-500/10 scale-125 transition-all duration-500 pointer-events-none"></div>
-            <div id="ring-outer-2" class="absolute w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full border border-amber-500/20 dark:border-amber-500/10 scale-110 transition-all duration-500 pointer-events-none"></div>
-            <div id="ring-outer-1" class="absolute w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border border-orange-500/30 dark:border-orange-400/20 transition-all duration-500 pointer-events-none"></div>
+            <div id="ring-outer-3" class="absolute w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full border border-brand-500/25 dark:border-brand-500/10 scale-125 transition-all duration-500 pointer-events-none"></div>
+            <div id="ring-outer-2" class="absolute w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full border border-amber-500/25 dark:border-amber-500/10 scale-110 transition-all duration-500 pointer-events-none"></div>
+            <div id="ring-outer-1" class="absolute w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full border border-brand-500/35 dark:border-brand-400/20 transition-all duration-500 pointer-events-none"></div>
 
             <!-- Canvas Sine-Wave Outer Ring Visualizer -->
             <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full flex items-center justify-center">
@@ -208,7 +228,7 @@
                 <canvas id="orb-canvas" class="absolute inset-0 w-full h-full rounded-full pointer-events-none z-10"></canvas>
 
                 <!-- Central Touch Core Orb Button (Abstract Tri-Tone Gradient) -->
-                <button id="orb-button" class="w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-52 rounded-full bg-abstract-gradient border-2 border-white/60 dark:border-cyan-300/40 flex flex-col items-center justify-center transition-all duration-300 active:scale-95 shadow-2xl orb-glow-idle z-20 relative overflow-hidden">
+                <button id="orb-button" class="w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-52 rounded-full bg-abstract-gradient border-2 border-white dark:border-brand-300/50 flex flex-col items-center justify-center transition-all duration-300 active:scale-95 shadow-2xl orb-glow-idle z-20 relative overflow-hidden">
                     
                     <!-- Dynamic Mic Icon -->
                     <div id="orb-icon-wrapper" class="text-white transition-all duration-300 group-hover:scale-110 mb-1 drop-shadow-md">
@@ -220,7 +240,7 @@
                         <span class="w-1 bg-white rounded-full h-2 animate-[wave_1s_infinite]"></span>
                         <span class="w-1 bg-amber-200 rounded-full h-5 animate-[wave_1.2s_infinite_0.2s]"></span>
                         <span class="w-1 bg-white rounded-full h-3 animate-[wave_0.9s_infinite_0.4s]"></span>
-                        <span class="w-1 bg-cyan-100 rounded-full h-6 animate-[wave_1.1s_infinite_0.1s]"></span>
+                        <span class="w-1 bg-brand-100 rounded-full h-6 animate-[wave_1.1s_infinite_0.1s]"></span>
                         <span class="w-1 bg-white rounded-full h-2 animate-[wave_1s_infinite_0.3s]"></span>
                     </div>
 
@@ -231,7 +251,7 @@
 
             <!-- Dynamic Agent Welcome Subtext -->
             <div class="mt-6 max-w-lg px-4 text-center">
-                <p id="agent-welcome-text" class="text-sm sm:text-base md:text-lg text-slate-800 dark:text-slate-200 font-semibold transition-all duration-300 leading-relaxed drop-shadow-sm">
+                <p id="agent-welcome-text" class="text-sm sm:text-base md:text-lg text-slate-900 dark:text-slate-100 font-bold transition-all duration-300 leading-relaxed drop-shadow-sm">
                     "CloryAI Fleet Agent xin chào, hôm nay tôi có thể giúp gì cho bạn?"
                 </p>
                 <p id="orb-hint-text" class="mt-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
@@ -240,10 +260,9 @@
             </div>
         </div>
 
-        <!-- Interactive Question Suggestions Pills -->
         <div class="mt-5 w-full max-w-2xl px-2 flex flex-col items-center">
-            <div class="flex items-center space-x-1.5 text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500 font-bold mb-2">
-                <i class="fa-solid fa-lightbulb text-amber-500 animate-pulse"></i>
+            <div class="flex items-center space-x-1.5 text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold mb-2">
+                <i class="fa-solid fa-lightbulb text-brand-500 animate-pulse"></i>
                 <span>GỢI Ý CÂU HỎI TƯƠNG TÁC</span>
             </div>
             <div id="suggested-questions-container" class="flex flex-wrap items-center justify-center gap-2">
@@ -255,16 +274,15 @@
 
     <!-- Floating CSAT Action Button -->
     <div class="fixed bottom-16 right-4 sm:bottom-20 sm:right-6 z-30">
-        <button onclick="openCsatModal()" class="animate-csat-pulse bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white px-4 py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl csat-float-glow border border-amber-200/50 flex items-center space-x-2 transition-transform hover:scale-105 active:scale-95" title="Đánh giá chất lượng trải nghiệm">
+        <button onclick="openCsatModal()" class="animate-csat-pulse bg-gradient-to-r from-brand-500 via-amber-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white px-4 py-3 rounded-full font-bold text-xs sm:text-sm shadow-xl csat-float-glow border border-white/60 flex items-center space-x-2 transition-transform hover:scale-105 active:scale-95" title="Đánh giá chất lượng trải nghiệm">
             <i class="fa-solid fa-star text-amber-200 animate-spin text-sm" style="animation-duration: 6s;"></i>
             <span class="uppercase tracking-wider">ĐÁNH GIÁ CỦA BẠN</span>
         </button>
     </div>
 
-    <!-- Footer -->
     <footer class="w-full py-3.5 px-6 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 flex flex-col items-center justify-center text-xs text-slate-500 dark:text-slate-400 z-20 shrink-0 transition-colors duration-300 space-y-1">
         <div class="text-center font-medium">
-            © 2026 CloryAI Assistant. Powered by <a href="https://www.dntg.com.vn" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 font-semibold underline underline-offset-2 hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">DNTG</a>. All rights reserved.
+            © 2026 CloryAI Assistant. Powered by <a href="https://www.dntg.com.vn" target="_blank" rel="noopener noreferrer" class="text-brand-600 dark:text-brand-400 font-bold underline underline-offset-2 hover:text-brand-500 dark:hover:text-brand-300 transition-colors">DNTG</a> / <span class="font-bold text-slate-800 dark:text-slate-200">CloudXCS</span>. All rights reserved.
         </div>
         <!-- Single English Language Disclaimer -->
         <div class="text-[11px] text-slate-400 dark:text-slate-500 text-center">
@@ -272,25 +290,24 @@
         </div>
     </footer>
 
-    <!-- Lead Registration Modal -->
-    <div id="registration-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+    <div id="registration-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative overflow-hidden">
             
-            <!-- Modal Header -->
+            <!-- Modal Header with CloudXCS / CloryAI Branding -->
             <div class="flex flex-col items-center text-center mb-5">
-                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-abstract-gradient mini-orb-glow animate-orb-pulse flex items-center justify-center p-0.5 mb-3 border border-white/50 dark:border-cyan-300/40 shadow-lg">
-                    <div class="w-full h-full rounded-full bg-slate-900/20 backdrop-blur-[1px] flex items-center justify-center text-white relative">
-                        <i id="reg-modal-agent-icon" class="fa-solid fa-truck-fast text-lg sm:text-xl text-cyan-100 drop-shadow"></i>
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-abstract-gradient mini-orb-glow animate-orb-pulse flex items-center justify-center p-0.5 mb-2 border border-white dark:border-brand-300/40 shadow-lg">
+                    <div class="w-full h-full rounded-full bg-slate-900/10 backdrop-blur-[1px] flex items-center justify-center text-white relative">
+                        <i id="reg-modal-agent-icon" class="fa-solid fa-truck-fast text-lg sm:text-xl text-white drop-shadow"></i>
                         <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-300"></span>
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-300"></span>
                         </span>
                     </div>
                 </div>
                 
                 <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-slate-100 uppercase tracking-tight">TRẢI NGHIỆM TRỢ LÝ CLORYAI</h2>
-                <p class="text-xs sm:text-sm text-cyan-600 dark:text-cyan-400 font-semibold mt-1">Ứng dụng trải nghiệm Trợ lý CloryAI đa tác vụ</p>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 italic mt-0.5">Lực lượng lao động số thế hệ mới: Vận hành chính xác, tức thời, 24/7</p>
+                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 font-bold mt-0.5">Lực lượng lao động số thế hệ mới</p>
+                <p class="text-xs sm:text-sm text-slate-900 dark:text-slate-100 mt-1">Đừng vội mua ! Hãy trải nghiệm <strong class="font-extrabold text-slate-900 dark:text-slate-100">phiên bản MIỄN PHÍ</strong> của chúng tôi</p>
             </div>
 
             <!-- Step 1: Main Auth Methods Selection -->
@@ -299,10 +316,10 @@
                 <!-- Droplist: Bạn quan tâm ứng dụng AI cho lĩnh vực nào? -->
                 <div class="text-left space-y-1">
                     <label for="reg-agent-interest" class="block text-xs font-bold text-slate-800 dark:text-slate-200">
-                        Bạn quan tâm ứng dụng AI cho lĩnh vực nào? <span class="text-cyan-600 dark:text-cyan-400">*</span>
+                        Bạn quan tâm ứng dụng AI cho lĩnh vực nào? <span class="text-brand-600 dark:text-brand-400">*</span>
                     </label>
                     <div class="relative">
-                        <select id="reg-agent-interest" onchange="syncRegModalIcon(this.value)" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm focus:outline-none focus:border-cyan-500 cursor-pointer shadow-sm appearance-none pr-8">
+                        <select id="reg-agent-interest" onchange="syncRegModalIcon(this.value)" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-bold text-xs sm:text-sm focus:outline-none focus:border-brand-500 cursor-pointer shadow-sm appearance-none pr-8">
                             <option value="logistics">🚚 Logistics, Warehouse, Fleet</option>
                             <option value="aerohub">✈️ Hàng không, Sân bay, Vận tải</option>
                             <option value="concierge">🛎️ Khách sạn, Resort, Hospitality</option>
@@ -313,9 +330,9 @@
                     </div>
                 </div>
 
-                <!-- Google Auth Option Only -->
+                <!-- Google Auth Option -->
                 <div>
-                    <button type="button" onclick="handleSocialAuth('google')" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm flex items-center justify-center space-x-3 transition-all active:scale-98 shadow-sm">
+                    <button type="button" onclick="handleSocialAuth('google')" class="w-full py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-xs sm:text-sm flex items-center justify-center space-x-3 transition-all active:scale-98 shadow-sm">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -333,29 +350,29 @@
                     <div class="flex-grow border-t border-slate-300 dark:border-slate-800"></div>
                 </div>
 
-                <!-- Classic Lead Registration Form -->
+                <!-- Classic Lead Registration Form (Matching CloudXCS Inputs) -->
                 <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-3">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tên</label>
-                        <input type="text" id="lead-name" placeholder="Nguyễn Văn A" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                        <input type="text" id="lead-name" placeholder="Nguyễn Văn A" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:outline-none focus:border-brand-500 transition-colors">
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Đơn vị</label>
-                        <input type="text" id="lead-company" placeholder="Công ty / Tổ chức của bạn" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                        <input type="text" id="lead-company" placeholder="Công ty / Tổ chức của bạn" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:outline-none focus:border-brand-500 transition-colors">
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Số điện thoại Zalo <span class="text-rose-500">*</span></label>
-                        <input type="tel" id="lead-phone" required placeholder="0901234567" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                        <input type="tel" id="lead-phone" required placeholder="0901234567" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:outline-none focus:border-brand-500 transition-colors">
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email <span class="text-rose-500">*</span></label>
-                        <input type="email" id="lead-email" required placeholder="example@domain.com" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors">
+                        <input type="email" id="lead-email" required placeholder="example@domain.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs sm:text-sm focus:outline-none focus:border-brand-500 transition-colors">
                     </div>
 
-                    <button type="submit" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-600 via-amber-600 to-orange-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-98 mt-2 flex items-center justify-center space-x-2">
+                    <button type="submit" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brand-600 via-brand-500 to-amber-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all active:scale-98 mt-2 flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-paper-plane"></i>
                         <span>BẮT ĐẦU TRÒ CHUYỆN CÙNG CLORYAI</span>
                     </button>
@@ -364,17 +381,17 @@
 
             <!-- Step 2: Social Auth Zalo Magic Link Mobile Input Modal -->
             <div id="reg-step-2" class="hidden space-y-4 text-center">
-                <div class="p-3 bg-cyan-50 dark:bg-slate-800/80 rounded-xl border border-cyan-200 dark:border-cyan-800 text-xs text-slate-700 dark:text-slate-200">
-                    <p class="font-bold text-cyan-600 dark:text-cyan-400 mb-1" id="social-user-display">Xin chào User</p>
+                <div class="p-3 bg-brand-50 dark:bg-slate-800/80 rounded-xl border border-brand-200 dark:border-brand-800 text-xs text-slate-700 dark:text-slate-200">
+                    <p class="font-bold text-brand-600 dark:text-brand-400 mb-1" id="social-user-display">Xin chào User</p>
                     <p>Nhập số điện thoại Zalo của bạn để nhận Link trải nghiệm CloryAI</p>
                 </div>
 
                 <div class="text-left space-y-1">
                     <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Số điện thoại Zalo <span class="text-rose-500">*</span></label>
-                    <input type="tel" id="social-zalo-phone" placeholder="0901234567" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-cyan-500 text-center font-mono font-bold tracking-widest">
+                    <input type="tel" id="social-zalo-phone" placeholder="0901234567" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-brand-500 text-center font-mono font-bold tracking-widest">
                 </div>
 
-                <button type="button" onclick="submitSocialZaloMagicLink()" class="w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
+                <button type="button" onclick="submitSocialZaloMagicLink()" class="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-comment-dots"></i>
                     <span>GỬI MAGIC LINK QUA ZALO & BẮT ĐẦU</span>
                 </button>
@@ -386,14 +403,14 @@
 
             <!-- Step 3: Direct Registration Thank You & Magic Link Notice Screen -->
             <div id="reg-step-thankyou" class="hidden space-y-4 text-center py-2">
-                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 flex items-center justify-center mx-auto text-2xl animate-bounce">
+                <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-600 border border-emerald-500/30 flex items-center justify-center mx-auto text-2xl animate-bounce">
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
 
                 <div class="space-y-2">
                     <h3 class="text-lg font-extrabold text-slate-900 dark:text-slate-100 uppercase tracking-tight">CẢM ƠN BẠN ĐÃ ĐĂNG KÝ!</h3>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed px-2">
-                        Vui lòng kiểm tra <strong class="text-cyan-600 dark:text-cyan-400">Email</strong> và <strong class="text-cyan-600 dark:text-cyan-400">tin nhắn Zalo</strong> của bạn để nhận <span class="font-semibold text-amber-500">Magic Link</span> và bắt đầu trải nghiệm cùng CloryAI.
+                        Vui lòng kiểm tra <strong class="text-brand-600 dark:text-brand-400">Email</strong> và <strong class="text-brand-600 dark:text-brand-400">tin nhắn Zalo</strong> của bạn để nhận <span class="font-semibold text-amber-500">Magic Link</span> và bắt đầu trải nghiệm cùng CloryAI.
                     </p>
                 </div>
 
@@ -401,8 +418,8 @@
                 <div class="p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs text-left space-y-1">
                     <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Thông tin liên hệ & Hỗ trợ khách hàng:</p>
                     <div class="flex items-center space-x-2 text-slate-700 dark:text-slate-300 font-medium">
-                        <i class="fa-solid fa-envelope text-cyan-500 text-xs"></i>
-                        <span>Email: <a href="mailto:hello@cloudpbx.vn" class="text-cyan-600 dark:text-cyan-400 font-semibold underline">hello@cloudpbx.vn</a></span>
+                        <i class="fa-solid fa-envelope text-brand-500 text-xs"></i>
+                        <span>Email: <a href="mailto:hello@cloudpbx.vn" class="text-brand-600 dark:text-brand-400 font-bold underline">hello@cloudpbx.vn</a></span>
                     </div>
                     <div class="flex items-center space-x-2 text-slate-700 dark:text-slate-300 font-medium">
                         <i class="fa-solid fa-phone-volume text-amber-500 text-xs animate-pulse"></i>
@@ -412,7 +429,7 @@
 
                 <!-- Direct Experience Action Link Button -->
                 <div class="pt-2">
-                    <button type="button" onclick="startDirectExperience()" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-600 via-amber-600 to-orange-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl transition-all active:scale-95 flex items-center justify-center space-x-2">
+                    <button type="button" onclick="startDirectExperience()" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brand-600 via-amber-600 to-brand-500 hover:opacity-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl transition-all active:scale-95 flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-play"></i>
                         <span>TRẢI NGHIỆM TRỰC TIẾP NGAY</span>
                     </button>
@@ -424,7 +441,7 @@
     </div>
 
     <!-- CSAT Modal -->
-    <div id="csat-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+    <div id="csat-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 max-w-lg w-full shadow-2xl relative overflow-hidden max-h-[90vh] overflow-y-auto">
             <button onclick="closeCsatModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg">
                 <i class="fa-solid fa-xmark"></i>
@@ -449,35 +466,35 @@
                         <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(4)" title="Hài lòng (4/5)"></i>
                         <i class="fa-solid fa-star csat-star transition-transform hover:scale-125" onclick="setCsatRating(5)" title="Rất hài lòng (5/5)"></i>
                     </div>
-                    <p id="rating-label-text" class="text-center text-xs text-cyan-600 dark:text-cyan-400 font-semibold mt-1">Vui lòng chọn số sao (5/5 ⭐)</p>
+                    <p id="rating-label-text" class="text-center text-xs text-brand-600 dark:text-brand-400 font-semibold mt-1">Vui lòng chọn số sao (5/5 ⭐)</p>
                 </div>
 
                 <!-- 2. Impressive Features -->
                 <div>
                     <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5">2. Tính năng làm bạn ấn tượng nhất?</label>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
-                            <input type="checkbox" value="Tương tác & Lắng nghe" class="csat-feature-check text-cyan-600 rounded">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-brand-500">
+                            <input type="checkbox" value="Tương tác & Lắng nghe" class="csat-feature-check text-brand-600 rounded">
                             <span>Tương tác & Lắng nghe</span>
                         </label>
-                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
-                            <input type="checkbox" value="Tốc độ phản hồi" class="csat-feature-check text-cyan-600 rounded">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-brand-500">
+                            <input type="checkbox" value="Tốc độ phản hồi" class="csat-feature-check text-brand-600 rounded">
                             <span>Tốc độ phản hồi</span>
                         </label>
-                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
-                            <input type="checkbox" value="Giao diện trực quan" class="csat-feature-check text-cyan-600 rounded">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-brand-500">
+                            <input type="checkbox" value="Giao diện trực quan" class="csat-feature-check text-brand-600 rounded">
                             <span>Giao diện trực quan</span>
                         </label>
-                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
-                            <input type="checkbox" value="Thông tin chính xác" class="csat-feature-check text-cyan-600 rounded">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-brand-500">
+                            <input type="checkbox" value="Thông tin chính xác" class="csat-feature-check text-brand-600 rounded">
                             <span>Thông tin chính xác</span>
                         </label>
-                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
-                            <input type="checkbox" value="Đa ngôn ngữ" class="csat-feature-check text-cyan-600 rounded">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-brand-500">
+                            <input type="checkbox" value="Đa ngôn ngữ" class="csat-feature-check text-brand-600 rounded">
                             <span>Đa ngôn ngữ</span>
                         </label>
-                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-cyan-500">
-                            <input type="checkbox" value="Dự đoán ý định" class="csat-feature-check text-cyan-600 rounded">
+                        <label class="flex items-center space-x-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-brand-500">
+                            <input type="checkbox" value="Dự đoán ý định" class="csat-feature-check text-brand-600 rounded">
                             <span>Dự đoán ý định</span>
                         </label>
                     </div>
@@ -486,7 +503,7 @@
                 <!-- 3. Implementation Plan -->
                 <div>
                     <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1.5">3. Kế hoạch triển khai của đơn vị bạn?</label>
-                    <select id="csat-plan-select" class="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-semibold focus:outline-none focus:border-cyan-500">
+                    <select id="csat-plan-select" class="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-semibold focus:outline-none focus:border-brand-500">
                         <option value="Cần tư vấn ngay">🔥 Cần tư vấn ngay hôm nay</option>
                         <option value="Cần báo giá">💰 Cần báo giá giải pháp On-premise</option>
                         <option value="Cần thêm thông tin">📄 Cần gửi thêm tài liệu giải pháp</option>
@@ -497,26 +514,26 @@
                 <!-- 4. Comments -->
                 <div>
                     <label class="block font-bold text-slate-800 dark:text-slate-200 mb-1">4. Góp ý bổ sung (Không bắt buộc)</label>
-                    <textarea id="csat-comment" rows="2" placeholder="Bạn mong muốn CloryAI cải thiện tính năng gì..." class="w-full p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs focus:outline-none focus:border-cyan-500"></textarea>
+                    <textarea id="csat-comment" rows="2" placeholder="Bạn mong muốn CloryAI cải thiện tính năng gì..." class="w-full p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs focus:outline-none focus:border-brand-500"></textarea>
                 </div>
 
-                <button type="submit" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
+                <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-95 flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-paper-plane"></i>
-                    <span>GỬI ĐÁNH GIÁ ĐẾN DNTG</span>
+                    <span>GỬI ĐÁNH GIÁ ĐẾN CLOUDXCS</span>
                 </button>
             </form>
         </div>
     </div>
 
     <!-- Expired Trial Modal -->
-    <div id="expired-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-lg flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+    <div id="expired-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-lg flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl">
             <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-500 flex items-center justify-center mx-auto mb-4 border border-rose-500/40">
                 <i class="fa-solid fa-hourglass-end text-2xl"></i>
             </div>
             <h3 class="text-xl font-extrabold text-slate-900 dark:text-slate-100">THỜI GIAN TRẢI NGHIỆM ĐÃ HẾT</h3>
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-                Phiên dùng thử 60 phút của bạn đã kết thúc. Vui lòng liên hệ với chuyên gia DNTG để nhận bản Demo On-premise toàn diện!
+                Phiên dùng thử 60 phút của bạn đã kết thúc. Vui lòng liên hệ với chuyên gia DNTG / CloudXCS để nhận bản Demo On-premise toàn diện!
             </p>
 
             <div class="mt-6 space-y-2.5">
@@ -525,14 +542,14 @@
                     <span>ĐÁNH GIÁ CỦA BẠN</span>
                 </button>
 
-                <a href="https://www.cloudpbx.vn/lien-he/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all active:scale-95">
+                <a href="https://www.cloudpbx.vn/lien-he/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all active:scale-95">
                     <i class="fa-solid fa-calendar-check mr-2"></i>ĐẶT LỊCH DEMO 1-1 GIAO DIỆN THỰC TẾ
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Admin Panel Modal -->
+    <!-- Secret Admin Panel Modal -->
     <div id="admin-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 max-w-4xl w-full shadow-2xl max-h-[90vh] flex flex-col">
             
@@ -544,7 +561,7 @@
                     </div>
                     <div>
                         <h3 class="font-bold text-base text-slate-900 dark:text-slate-100">ADMIN CONTROL PANEL - CLORYAI DEMO SESSIONS</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">Quản lý danh sách các phiên trải nghiệm người dùng & CSAT</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Quản lý danh sách các phiên trải nghiệm người dùng & CSAT (CloudXCS)</p>
                     </div>
                 </div>
                 <button onclick="closeAdminModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center justify-center">
@@ -555,8 +572,8 @@
             <!-- Admin Authentication Step -->
             <div id="admin-auth-sec" class="py-8 max-w-sm mx-auto w-full text-center space-y-4">
                 <p class="text-xs text-slate-500 dark:text-slate-400">Nhập mật khẩu Admin để truy cập Hệ thống Quản lý Phiên:</p>
-                <input type="password" id="admin-pass-input" placeholder="Mật khẩu Admin" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:border-cyan-500 text-center">
-                <button onclick="verifyAdminPass()" class="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
+                <input type="password" id="admin-pass-input" placeholder="Mật khẩu Admin" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:border-brand-500 text-center">
+                <button onclick="verifyAdminPass()" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
                     XÁC NHẬN ĐĂNG NHẬP ADMIN
                 </button>
             </div>
@@ -566,24 +583,24 @@
                 <!-- Config & Notification Settings Bar -->
                 <div class="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-700/80 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
                     <div class="flex items-center space-x-2 w-full sm:w-auto">
-                        <i class="fa-solid fa-envelope text-cyan-500"></i>
+                        <i class="fa-solid fa-envelope text-brand-500"></i>
                         <span class="font-semibold text-slate-700 dark:text-slate-300">Email nhận Lead Sales:</span>
                     </div>
                     <div class="flex items-center space-x-2 w-full sm:w-auto">
-                        <input type="email" id="admin-notify-email-input" value="lamthenhan@gmail.com" class="px-3 py-1 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs font-mono text-slate-800 dark:text-slate-100 w-full sm:w-64 focus:outline-none focus:border-cyan-500">
-                        <button onclick="saveAdminNotifyEmail()" class="px-3 py-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded text-xs transition-colors shrink-0">Lưu Email</button>
+                        <input type="email" id="admin-notify-email-input" value="lamthenhan@gmail.com" class="px-3 py-1 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs font-mono text-slate-900 dark:text-slate-100 w-full sm:w-64 focus:outline-none focus:border-brand-500">
+                        <button onclick="saveAdminNotifyEmail()" class="px-3 py-1 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded text-xs transition-colors shrink-0">Lưu Email</button>
                     </div>
                 </div>
 
                 <!-- Admin Filters & Search Bar -->
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
                     <div class="relative w-full sm:w-72">
-                        <input type="text" id="admin-search-input" oninput="filterAdminSessions()" placeholder="Tìm theo tên, SĐT, email..." class="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-cyan-500">
+                        <input type="text" id="admin-search-input" oninput="filterAdminSessions()" placeholder="Tìm theo tên, SĐT, email..." class="w-full pl-9 pr-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-brand-500">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-400"></i>
                     </div>
 
                     <div class="flex items-center space-x-1 w-full sm:w-auto text-xs">
-                        <button onclick="setAdminFilter('all')" id="filter-btn-all" class="px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-semibold">Tất cả</button>
+                        <button onclick="setAdminFilter('all')" id="filter-btn-all" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white font-semibold">Tất cả</button>
                         <button onclick="setAdminFilter('active')" id="filter-btn-active" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">Đang hoạt động</button>
                         <button onclick="setAdminFilter('expired')" id="filter-btn-expired" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold">Hết hạn</button>
                     </div>
@@ -623,12 +640,12 @@
 
     <!-- UI Toast Notification -->
     <div id="ui-toast" class="fixed top-5 right-5 z-50 max-w-xs px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs shadow-2xl transition-all duration-300 -translate-y-10 opacity-0 pointer-events-none flex items-center space-x-2">
-        <i id="toast-icon" class="fa-solid fa-circle-info text-cyan-400 text-sm"></i>
+        <i id="toast-icon" class="fa-solid fa-circle-info text-brand-400 text-sm"></i>
         <span id="toast-msg">Thông báo hệ thống</span>
     </div>
 
     <!-- Confirm Dialog Modal -->
-    <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
+    <div id="confirm-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300 opacity-0 pointer-events-none">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 max-w-sm w-full text-center shadow-2xl space-y-4">
             <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center mx-auto text-xl">
                 <i class="fa-solid fa-circle-question"></i>
@@ -644,7 +661,7 @@
     <script>
         const WEBHOOK_URL = "https://httpbin.org/post";
 
-        let isDarkMode = true;
+        let isDarkMode = false; // Default initialized to Light Mode
         let currentState = 'idle'; // 'idle', 'listening', 'thinking', 'speaking'
         let currentAgentKey = 'logistics';
         let recognition = null;
@@ -709,7 +726,6 @@
             }
         };
 
-        // DOM Element Cache
         const orbButton = document.getElementById('orb-button');
         const orbIconWrapper = document.getElementById('orb-icon-wrapper');
         const orbIcon = document.getElementById('orb-icon');
@@ -749,7 +765,7 @@
             } else if (type === 'success') {
                 iconEl.className = "fa-solid fa-circle-check text-emerald-400 text-sm";
             } else {
-                iconEl.className = "fa-solid fa-circle-info text-cyan-400 text-sm";
+                iconEl.className = "fa-solid fa-circle-info text-brand-400 text-sm";
             }
 
             toast.classList.remove('-translate-y-10', 'opacity-0', 'pointer-events-none');
@@ -808,7 +824,7 @@
             const config = agentsConfig[agentKey];
             const modalIcon = document.getElementById('reg-modal-agent-icon');
             if (config && modalIcon) {
-                modalIcon.className = `${config.iconClass} text-lg sm:text-xl text-cyan-100 drop-shadow`;
+                modalIcon.className = `${config.iconClass} text-lg sm:text-xl text-white drop-shadow`;
             }
         }
 
@@ -817,10 +833,9 @@
             if (!config || !suggestedQuestionsContainer) return;
 
             suggestedQuestionsContainer.innerHTML = config.suggestions.map(qText => {
-                // Strip icons if any for raw text query execution
                 const cleanQuery = qText.replace(/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]\s*/u, '');
                 return `
-                    <button onclick="processUserQuery('${cleanQuery}')" class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 dark:hover:border-cyan-400 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-medium shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 flex items-center space-x-1">
+                    <button onclick="processUserQuery('${cleanQuery}')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-400 text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 text-xs font-semibold shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 flex items-center space-x-1">
                         <span>${qText}</span>
                     </button>
                 `;
@@ -832,16 +847,14 @@
             const config = agentsConfig[agentKey];
             if (!config) return;
 
-            // Sync Header Dropdown
             const selector = document.getElementById('agent-selector');
             if (selector && selector.value !== agentKey) {
                 selector.value = agentKey;
             }
 
-            // Sync Header Icon
             const headerIcon = document.getElementById('agent-header-icon');
             if (headerIcon) {
-                headerIcon.className = `${config.iconClass} text-xs md:text-sm text-cyan-100 drop-shadow-sm transition-all duration-300`;
+                headerIcon.className = `${config.iconClass} text-xs md:text-sm text-white drop-shadow-sm transition-all duration-300`;
             }
 
             syncRegModalIcon(agentKey);
@@ -872,14 +885,14 @@
             const baseButtonClass = "w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-52 rounded-full flex flex-col items-center justify-center transition-all duration-300 active:scale-95 z-20 relative overflow-hidden border-2 ";
 
             if (newState === 'idle') {
-                orbButton.className = baseButtonClass + "bg-abstract-gradient border-white/60 dark:border-cyan-300/40 orb-glow-idle";
+                orbButton.className = baseButtonClass + "bg-abstract-gradient border-white dark:border-brand-300/50 orb-glow-idle";
                 orbIcon.className = "fa-solid fa-microphone text-3xl sm:text-4xl md:text-5xl text-white";
                 orbActionText.innerText = "CHẠM ĐỂ NÓI";
                 orbHintText.innerText = "Chạm vào quả cầu trung tâm để tương tác trực tiếp bằng giọng nói";
                 voiceBars.classList.add('hidden');
                 orbIconWrapper.classList.remove('hidden');
 
-                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-slate-900 border border-emerald-400/50 text-emerald-600 dark:text-emerald-400 text-xs font-medium shadow-sm";
+                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-slate-900 border border-emerald-400/50 text-emerald-700 dark:text-emerald-400 text-xs font-medium shadow-sm";
                 statusDot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
                 statusText.innerText = "SẴN SÀNG";
 
@@ -908,14 +921,14 @@
                 statusText.innerText = "ĐANG SUY NGHĨ";
 
             } else if (newState === 'speaking') {
-                orbButton.className = baseButtonClass + "bg-gradient-to-tr from-cyan-600 via-sky-600 to-blue-600 border-cyan-300 orb-glow-speaking scale-105";
+                orbButton.className = baseButtonClass + "bg-gradient-to-tr from-brand-600 via-brand-500 to-amber-600 border-brand-300 orb-glow-speaking scale-105";
                 orbActionText.innerText = "ĐANG PHÁT ÂM";
                 orbHintText.innerText = "Chạm vào quả cầu nếu bạn muốn dừng lời nói";
                 orbIconWrapper.classList.add('hidden');
                 voiceBars.classList.remove('hidden');
 
-                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-950 border border-cyan-400 text-cyan-800 dark:text-cyan-300 text-xs font-medium shadow-sm";
-                statusDot.className = "w-2 h-2 rounded-full bg-cyan-500 animate-pulse";
+                statusBadge.className = "hidden lg:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-100 dark:bg-brand-950 border border-brand-400 text-brand-800 dark:text-brand-300 text-xs font-medium shadow-sm";
+                statusDot.className = "w-2 h-2 rounded-full bg-brand-500 animate-pulse";
                 statusText.innerText = "ĐANG TRẢ LỜI";
             }
         }
@@ -1063,10 +1076,10 @@
                 }
                 ctx.closePath();
 
-                let strokeColor = isDarkMode ? 'rgba(6, 182, 212, 0.5)' : 'rgba(8, 145, 178, 0.6)';
-                if (currentState === 'listening') strokeColor = 'rgba(16, 185, 129, 0.8)';
-                if (currentState === 'thinking') strokeColor = 'rgba(245, 158, 11, 0.8)';
-                if (currentState === 'speaking') strokeColor = 'rgba(14, 165, 233, 0.9)';
+                let strokeColor = isDarkMode ? 'rgba(220, 94, 59, 0.5)' : 'rgba(220, 94, 59, 0.7)';
+                if (currentState === 'listening') strokeColor = 'rgba(16, 185, 129, 0.85)';
+                if (currentState === 'thinking') strokeColor = 'rgba(245, 158, 11, 0.85)';
+                if (currentState === 'speaking') strokeColor = 'rgba(220, 94, 59, 0.95)';
 
                 ctx.strokeStyle = strokeColor;
                 ctx.lineWidth = 2.5 * window.devicePixelRatio;
@@ -1168,7 +1181,7 @@
                 interestedAgent: selectedAgent,
                 authProvider: pendingSocialProvider,
                 startTime: now,
-                durationMs: 60 * 60 * 1000, // 60 mins
+                durationMs: 60 * 60 * 1000,
                 ip: userIpAddress,
                 status: 'active',
                 csat: null
@@ -1209,7 +1222,7 @@
                 interestedAgent: selectedAgent,
                 authProvider: 'classic',
                 startTime: now,
-                durationMs: 60 * 60 * 1000, // 60 mins
+                durationMs: 60 * 60 * 1000,
                 ip: userIpAddress,
                 status: 'active',
                 csat: null
@@ -1220,7 +1233,6 @@
 
             changeAgent(selectedAgent);
 
-            // Hide Step 1 & Show Thank You Step
             document.getElementById('reg-step-1').classList.add('hidden');
             document.getElementById('reg-step-2').classList.add('hidden');
             document.getElementById('reg-step-thankyou').classList.remove('hidden');
@@ -1300,7 +1312,7 @@
                 if (index < rating) {
                     star.className = "fa-solid fa-star csat-star text-amber-400 transition-transform hover:scale-125";
                 } else {
-                    star.className = "fa-regular fa-star csat-star text-slate-400 transition-transform hover:scale-125";
+                    star.className = "fa-regular fa-star csat-star text-slate-300 dark:text-slate-600 transition-transform hover:scale-125";
                 }
             });
 
@@ -1341,7 +1353,7 @@
             }).catch(err => console.log("CSAT dispatch queued"));
 
             closeCsatModal();
-            showToast("Cảm ơn bạn đã gửi đánh giá cho CloryAI!", "success");
+            showToast("Cảm ơn bạn đã gửi đánh giá cho CloudXCS / CloryAI!", "success");
             renderAdminSessions();
         }
 
@@ -1395,7 +1407,7 @@
             ['all', 'active', 'expired'].forEach(f => {
                 const btn = document.getElementById(`filter-btn-${f}`);
                 if (f === filterType) {
-                    btn.className = "px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-semibold";
+                    btn.className = "px-3 py-1.5 rounded-lg bg-brand-600 text-white font-semibold";
                 } else {
                     btn.className = "px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold";
                 }
@@ -1464,7 +1476,7 @@
                             </span>
                         </td>
                         <td class="p-3 text-right space-x-1">
-                            <button onclick="extendSessionTime('${s.id}', 15)" class="px-2 py-1 bg-cyan-600/20 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-600 hover:text-white rounded font-mono font-bold text-[10px] transition-colors">+15m</button>
+                            <button onclick="extendSessionTime('${s.id}', 15)" class="px-2 py-1 bg-brand-600/20 text-brand-600 dark:text-brand-400 hover:bg-brand-600 hover:text-white rounded font-mono font-bold text-[10px] transition-colors">+15m</button>
                             <button onclick="extendSessionTime('${s.id}', 30)" class="px-2 py-1 bg-amber-600/20 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white rounded font-mono font-bold text-[10px] transition-colors">+30m</button>
                             <button onclick="toggleLockSession('${s.id}')" class="px-2 py-1 ${isExpired ? 'bg-emerald-600/20 text-emerald-600' : 'bg-rose-600/20 text-rose-600'} hover:opacity-80 rounded font-bold text-[10px] transition-colors">
                                 ${isExpired ? 'Mở lại' : '🔒 Khóa'}
